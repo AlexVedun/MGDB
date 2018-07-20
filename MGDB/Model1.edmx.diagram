@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4fd93480a179494093fe64effea77588" Name="Diagram1" >
+        <EntityTypeShape EntityType="Model1.MainJournal" Width="1.5" PointX="3.375" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.ListOfEngineers" Width="1.5" PointX="7.125" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.CustomersList" Width="1.5" PointX="8.875" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.SamplePrepJournal" Width="1.5" PointX="9.875" PointY="3.125" />
+        <EntityTypeShape EntityType="Model1.SampleMakingJournal" Width="1.5" PointX="11.875" PointY="3.125" />
+        <AssociationConnector Association="Model1.SampleMakingJournalCustomers" />
+        <EntityTypeShape EntityType="Model1.MVZList" Width="1.5" PointX="10.875" PointY="0.5" />
+        <AssociationConnector Association="Model1.MVZListCustomersList" />
+        <AssociationConnector Association="Model1.SampleMakingJournalMVZList" />
+        <AssociationConnector Association="Model1.SampleMakingJournalListOfEngineers" />
+        <AssociationConnector Association="Model1.SamplePrepJournalCustomersList" />
+        <AssociationConnector Association="Model1.SamplePrepJournalMVZList" />
+        <AssociationConnector Association="Model1.SamplePrepJournalListOfEngineers" />
+        <EntityTypeShape EntityType="Model1.ChemistryJournal" Width="1.5" PointX="8" PointY="3.125" />
+        <AssociationConnector Association="Model1.ChemistryJournalCustomersList" />
+        <AssociationConnector Association="Model1.ChemistryJournalMVZList" />
+        <AssociationConnector Association="Model1.ChemistryJournalListOfEngineers" />
+        <AssociationConnector Association="Model1.MainJournalCustomersList" />
+        <AssociationConnector Association="Model1.MainJournalMVZList" />
+        <EntityTypeShape EntityType="Model1.TypeOfResearch" Width="1.5" PointX="6.375" PointY="3.125" />
+        <AssociationConnector Association="Model1.MainJournalTypeOfResearch" />
+        <AssociationConnector Association="Model1.MainJournalListOfEngineers" />
+        <EntityTypeShape EntityType="Model1.DataJournal" Width="1.5" PointX="0.625" PointY="0.5" />
+        <AssociationConnector Association="Model1.MainJournalDataJournal" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
