@@ -1,0 +1,877 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MGDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="MGDBModelStoreContainer">
+    <EntitySet Name="MainJournalSet" EntityType="MGDBModel.Store.MainJournalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ListOfEngineersSet" EntityType="MGDBModel.Store.ListOfEngineersSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomersListSet" EntityType="MGDBModel.Store.CustomersListSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SamplePrepJournalSet" EntityType="MGDBModel.Store.SamplePrepJournalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SampleMakingJournalSet" EntityType="MGDBModel.Store.SampleMakingJournalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MVZListSet" EntityType="MGDBModel.Store.MVZListSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ChemistryJournalSet" EntityType="MGDBModel.Store.ChemistryJournalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TypeOfResearchSet" EntityType="MGDBModel.Store.TypeOfResearchSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DataJournalSet" EntityType="MGDBModel.Store.DataJournalSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="MainJournalCustomersList" Association="MGDBModel.Store.MainJournalCustomersList">
+      <End Role="MainJournal" EntitySet="MainJournalSet" />
+      <End Role="CustomersList" EntitySet="CustomersListSet" />
+    </AssociationSet>
+    <AssociationSet Name="MainJournalMVZList" Association="MGDBModel.Store.MainJournalMVZList">
+      <End Role="MainJournal" EntitySet="MainJournalSet" />
+      <End Role="MVZList" EntitySet="MVZListSet" />
+    </AssociationSet>
+    <AssociationSet Name="MainJournalTypeOfResearch" Association="MGDBModel.Store.MainJournalTypeOfResearch">
+      <End Role="MainJournal" EntitySet="MainJournalSet" />
+      <End Role="TypeOfResearch" EntitySet="TypeOfResearchSet" />
+    </AssociationSet>
+    <AssociationSet Name="MainJournalListOfEngineers" Association="MGDBModel.Store.MainJournalListOfEngineers">
+      <End Role="MainJournal" EntitySet="MainJournalSet" />
+      <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+    </AssociationSet>
+    <AssociationSet Name="MainJournalDataJournal" Association="MGDBModel.Store.MainJournalDataJournal">
+      <End Role="MainJournal" EntitySet="MainJournalSet" />
+      <End Role="DataJournal" EntitySet="DataJournalSet" />
+    </AssociationSet>
+    <AssociationSet Name="SamplePrepJournalListOfEngineers" Association="MGDBModel.Store.SamplePrepJournalListOfEngineers">
+      <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+      <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+    </AssociationSet>
+    <AssociationSet Name="SamplePrepJournalCustomersList" Association="MGDBModel.Store.SamplePrepJournalCustomersList">
+      <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+      <End Role="CustomersList" EntitySet="CustomersListSet" />
+    </AssociationSet>
+    <AssociationSet Name="SampleMakingJournalListOfEngineers" Association="MGDBModel.Store.SampleMakingJournalListOfEngineers">
+      <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+      <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+    </AssociationSet>
+    <AssociationSet Name="SampleMakingJournalCustomers" Association="MGDBModel.Store.SampleMakingJournalCustomers">
+      <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+      <End Role="CustomersList" EntitySet="CustomersListSet" />
+    </AssociationSet>
+    <AssociationSet Name="ChemistryJournalListOfEngineers" Association="MGDBModel.Store.ChemistryJournalListOfEngineers">
+      <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+      <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+    </AssociationSet>
+    <AssociationSet Name="ChemistryJournalCustomersList" Association="MGDBModel.Store.ChemistryJournalCustomersList">
+      <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+      <End Role="CustomersList" EntitySet="CustomersListSet" />
+    </AssociationSet>
+    <AssociationSet Name="ChemistryJournalMVZList" Association="MGDBModel.Store.ChemistryJournalMVZList">
+      <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+      <End Role="MVZList" EntitySet="MVZListSet" />
+    </AssociationSet>
+    <AssociationSet Name="SamplePrepJournalMVZList" Association="MGDBModel.Store.SamplePrepJournalMVZList">
+      <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+      <End Role="MVZList" EntitySet="MVZListSet" />
+    </AssociationSet>
+    <AssociationSet Name="SampleMakingJournalMVZList" Association="MGDBModel.Store.SampleMakingJournalMVZList">
+      <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+      <End Role="MVZList" EntitySet="MVZListSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="MainJournalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nchar" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="NumberOfSamples" Type="smallint" Nullable="false" />
+    <Property Name="Notation" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="StatusDescription" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ResearchResults" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TypeOfDefect" Type="int" Nullable="true" />
+    <Property Name="FinishDate" Type="datetime" Nullable="false" />
+    <Property Name="Document1" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Document2" Type="varbinary(max)" Nullable="true" />
+    <Property Name="Document3" Type="varbinary(max)" Nullable="true" />
+    <Property Name="ResearchData_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ListOfEngineersSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SampleMakingJournalId" Type="int" Nullable="false" />
+    <Property Name="SamplePrepJournalId" Type="int" Nullable="false" />
+    <Property Name="ChemistryJournalId" Type="int" Nullable="false" />
+    <Property Name="MainJournalId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomersListSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SampleMakingJournalId" Type="int" Nullable="false" />
+    <Property Name="SamplePrepJournalId" Type="int" Nullable="false" />
+    <Property Name="ChemistryJournalId" Type="int" Nullable="false" />
+    <Property Name="MainJournalId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SamplePrepJournalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Task" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SampleMakingJournalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Task" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MVZListSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MVZ" Type="nchar" Nullable="false" MaxLength="8" />
+    <Property Name="SampleMakingJournalId" Type="int" Nullable="false" />
+    <Property Name="SamplePrepJournalId" Type="int" Nullable="false" />
+    <Property Name="ChemistryJournalId" Type="int" Nullable="false" />
+    <Property Name="MainJournalId" Type="int" Nullable="false" />
+    <Property Name="ChemistryJournalId1" Type="int" Nullable="false" />
+    <Property Name="SamplePrepJournalId1" Type="int" Nullable="false" />
+    <Property Name="SampleMakingJournalId1" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChemistryJournalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Steel" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ListOfElements" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TypeOfResearchSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MainJournalId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataJournalSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SampleMarks" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Steel" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Melt" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="MNLZ" Type="tinyint" Nullable="true" />
+    <Property Name="Slab" Type="smallint" Nullable="true" />
+    <Property Name="Part" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Plate" Type="smallint" Nullable="true" />
+    <Property Name="Thickness" Type="real" Nullable="true" />
+    <Property Name="TypeOfTest" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Requirements" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ResultsOfTest" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <Association Name="MainJournalCustomersList">
+    <End Role="MainJournal" Type="MGDBModel.Store.MainJournalSet" Multiplicity="1" />
+    <End Role="CustomersList" Type="MGDBModel.Store.CustomersListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomersList">
+        <PropertyRef Name="MainJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MainJournalMVZList">
+    <End Role="MainJournal" Type="MGDBModel.Store.MainJournalSet" Multiplicity="1" />
+    <End Role="MVZList" Type="MGDBModel.Store.MVZListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVZList">
+        <PropertyRef Name="MainJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MainJournalTypeOfResearch">
+    <End Role="MainJournal" Type="MGDBModel.Store.MainJournalSet" Multiplicity="1" />
+    <End Role="TypeOfResearch" Type="MGDBModel.Store.TypeOfResearchSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TypeOfResearch">
+        <PropertyRef Name="MainJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MainJournalListOfEngineers">
+    <End Role="MainJournal" Type="MGDBModel.Store.MainJournalSet" Multiplicity="1" />
+    <End Role="ListOfEngineers" Type="MGDBModel.Store.ListOfEngineersSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MainJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListOfEngineers">
+        <PropertyRef Name="MainJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MainJournalDataJournal">
+    <End Role="MainJournal" Type="MGDBModel.Store.MainJournalSet" Multiplicity="*" />
+    <End Role="DataJournal" Type="MGDBModel.Store.DataJournalSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="DataJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MainJournal">
+        <PropertyRef Name="ResearchData_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SamplePrepJournalListOfEngineers">
+    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepJournalSet" Multiplicity="1" />
+    <End Role="ListOfEngineers" Type="MGDBModel.Store.ListOfEngineersSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SamplePrepJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListOfEngineers">
+        <PropertyRef Name="SamplePrepJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SamplePrepJournalCustomersList">
+    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepJournalSet" Multiplicity="1" />
+    <End Role="CustomersList" Type="MGDBModel.Store.CustomersListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SamplePrepJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomersList">
+        <PropertyRef Name="SamplePrepJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SampleMakingJournalListOfEngineers">
+    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingJournalSet" Multiplicity="1" />
+    <End Role="ListOfEngineers" Type="MGDBModel.Store.ListOfEngineersSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SampleMakingJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListOfEngineers">
+        <PropertyRef Name="SampleMakingJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SampleMakingJournalCustomers">
+    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingJournalSet" Multiplicity="1" />
+    <End Role="CustomersList" Type="MGDBModel.Store.CustomersListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SampleMakingJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomersList">
+        <PropertyRef Name="SampleMakingJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChemistryJournalListOfEngineers">
+    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryJournalSet" Multiplicity="1" />
+    <End Role="ListOfEngineers" Type="MGDBModel.Store.ListOfEngineersSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChemistryJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListOfEngineers">
+        <PropertyRef Name="ChemistryJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChemistryJournalCustomersList">
+    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryJournalSet" Multiplicity="1" />
+    <End Role="CustomersList" Type="MGDBModel.Store.CustomersListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChemistryJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomersList">
+        <PropertyRef Name="ChemistryJournalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChemistryJournalMVZList">
+    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryJournalSet" Multiplicity="1" />
+    <End Role="MVZList" Type="MGDBModel.Store.MVZListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ChemistryJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVZList">
+        <PropertyRef Name="ChemistryJournalId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SamplePrepJournalMVZList">
+    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepJournalSet" Multiplicity="1" />
+    <End Role="MVZList" Type="MGDBModel.Store.MVZListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SamplePrepJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVZList">
+        <PropertyRef Name="SamplePrepJournalId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SampleMakingJournalMVZList">
+    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingJournalSet" Multiplicity="1" />
+    <End Role="MVZList" Type="MGDBModel.Store.MVZListSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SampleMakingJournal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MVZList">
+        <PropertyRef Name="SampleMakingJournalId1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="MGDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="MGDBModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="MainJournalSet" EntityType="MGDBModel.MainJournal" />
+          <EntitySet Name="ListOfEngineersSet" EntityType="MGDBModel.ListOfEngineers" />
+          <EntitySet Name="CustomersListSet" EntityType="MGDBModel.CustomersList" />
+          <EntitySet Name="SamplePrepJournalSet" EntityType="MGDBModel.SamplePrepJournal" />
+          <EntitySet Name="SampleMakingJournalSet" EntityType="MGDBModel.SampleMakingJournal" />
+          <EntitySet Name="MVZListSet" EntityType="MGDBModel.MVZList" />
+          <EntitySet Name="ChemistryJournalSet" EntityType="MGDBModel.ChemistryJournal" />
+          <EntitySet Name="TypeOfResearchSet" EntityType="MGDBModel.TypeOfResearch" />
+          <EntitySet Name="DataJournalSet" EntityType="MGDBModel.DataJournal" />
+          <AssociationSet Name="MainJournalCustomersList" Association="MGDBModel.MainJournalCustomersList">
+            <End Role="MainJournal" EntitySet="MainJournalSet" />
+            <End Role="CustomersList" EntitySet="CustomersListSet" />
+          </AssociationSet>
+          <AssociationSet Name="MainJournalMVZList" Association="MGDBModel.MainJournalMVZList">
+            <End Role="MainJournal" EntitySet="MainJournalSet" />
+            <End Role="MVZList" EntitySet="MVZListSet" />
+          </AssociationSet>
+          <AssociationSet Name="MainJournalTypeOfResearch" Association="MGDBModel.MainJournalTypeOfResearch">
+            <End Role="MainJournal" EntitySet="MainJournalSet" />
+            <End Role="TypeOfResearch" EntitySet="TypeOfResearchSet" />
+          </AssociationSet>
+          <AssociationSet Name="MainJournalListOfEngineers" Association="MGDBModel.MainJournalListOfEngineers">
+            <End Role="MainJournal" EntitySet="MainJournalSet" />
+            <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+          </AssociationSet>
+          <AssociationSet Name="MainJournalDataJournal" Association="MGDBModel.MainJournalDataJournal">
+            <End Role="MainJournal" EntitySet="MainJournalSet" />
+            <End Role="DataJournal" EntitySet="DataJournalSet" />
+          </AssociationSet>
+          <AssociationSet Name="SamplePrepJournalListOfEngineers" Association="MGDBModel.SamplePrepJournalListOfEngineers">
+            <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+            <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+          </AssociationSet>
+          <AssociationSet Name="SamplePrepJournalCustomersList" Association="MGDBModel.SamplePrepJournalCustomersList">
+            <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+            <End Role="CustomersList" EntitySet="CustomersListSet" />
+          </AssociationSet>
+          <AssociationSet Name="SampleMakingJournalListOfEngineers" Association="MGDBModel.SampleMakingJournalListOfEngineers">
+            <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+            <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+          </AssociationSet>
+          <AssociationSet Name="SampleMakingJournalCustomers" Association="MGDBModel.SampleMakingJournalCustomers">
+            <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+            <End Role="CustomersList" EntitySet="CustomersListSet" />
+          </AssociationSet>
+          <AssociationSet Name="ChemistryJournalListOfEngineers" Association="MGDBModel.ChemistryJournalListOfEngineers">
+            <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+            <End Role="ListOfEngineers" EntitySet="ListOfEngineersSet" />
+          </AssociationSet>
+          <AssociationSet Name="ChemistryJournalCustomersList" Association="MGDBModel.ChemistryJournalCustomersList">
+            <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+            <End Role="CustomersList" EntitySet="CustomersListSet" />
+          </AssociationSet>
+          <AssociationSet Name="ChemistryJournalMVZList" Association="MGDBModel.ChemistryJournalMVZList">
+            <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+            <End Role="MVZList" EntitySet="MVZListSet" />
+          </AssociationSet>
+          <AssociationSet Name="SamplePrepJournalMVZList" Association="MGDBModel.SamplePrepJournalMVZList">
+            <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+            <End Role="MVZList" EntitySet="MVZListSet" />
+          </AssociationSet>
+          <AssociationSet Name="SampleMakingJournalMVZList" Association="MGDBModel.SampleMakingJournalMVZList">
+            <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+            <End Role="MVZList" EntitySet="MVZListSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EnumType Name="StatusEnum">
+          <Member Name="IsInWork" />
+          <Member Name="IsDone" />
+          <Member Name="IsSuspended" />
+          <Member Name="IsCanceled" />
+        </EnumType>
+        <EnumType Name="TypeOfDefectEnum">
+          <Member Name="IsSteelmaking" />
+          <Member Name="IsRolling" />
+          <Member Name="IsBoth" />
+        </EnumType>
+        <EntityType Name="MainJournal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" Nullable="false" FixedLength="true" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="true" />
+          <Property Name="NumberOfSamples" Type="Int16" Nullable="false" />
+          <Property Name="Notation" Type="String" Nullable="true" />
+          <Property Name="Status" Type="MGDBModel.StatusEnum" Nullable="false" />
+          <Property Name="StatusDescription" Type="String" Nullable="true" />
+          <Property Name="ResearchResults" Type="String" Nullable="true" />
+          <Property Name="TypeOfDefect" Type="MGDBModel.TypeOfDefectEnum" Nullable="true" />
+          <Property Name="FinishDate" Type="DateTime" Nullable="false" />
+          <Property Name="Document1" Type="Binary" Nullable="true" MaxLength="Max" />
+          <Property Name="Document2" Type="Binary" Nullable="true" MaxLength="Max" />
+          <Property Name="Document3" Type="Binary" Nullable="true" MaxLength="Max" />
+          <NavigationProperty Name="Customer" Relationship="MGDBModel.MainJournalCustomersList" FromRole="MainJournal" ToRole="CustomersList" />
+          <NavigationProperty Name="MVZList" Relationship="MGDBModel.MainJournalMVZList" FromRole="MainJournal" ToRole="MVZList" />
+          <NavigationProperty Name="Type" Relationship="MGDBModel.MainJournalTypeOfResearch" FromRole="MainJournal" ToRole="TypeOfResearch" />
+          <NavigationProperty Name="Engineer" Relationship="MGDBModel.MainJournalListOfEngineers" FromRole="MainJournal" ToRole="ListOfEngineers" />
+          <NavigationProperty Name="ResearchData" Relationship="MGDBModel.MainJournalDataJournal" FromRole="MainJournal" ToRole="DataJournal" />
+        </EntityType>
+        <EntityType Name="ListOfEngineers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="SampleMakingJournalId" Type="Int32" Nullable="false" />
+          <Property Name="SamplePrepJournalId" Type="Int32" Nullable="false" />
+          <Property Name="ChemistryJournalId" Type="Int32" Nullable="false" />
+          <Property Name="MainJournalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MainJournal" Relationship="MGDBModel.MainJournalListOfEngineers" FromRole="ListOfEngineers" ToRole="MainJournal" />
+          <NavigationProperty Name="SamplePrepJournal" Relationship="MGDBModel.SamplePrepJournalListOfEngineers" FromRole="ListOfEngineers" ToRole="SamplePrepJournal" />
+          <NavigationProperty Name="SampleMakingJournal" Relationship="MGDBModel.SampleMakingJournalListOfEngineers" FromRole="ListOfEngineers" ToRole="SampleMakingJournal" />
+          <NavigationProperty Name="ChemistryJournal" Relationship="MGDBModel.ChemistryJournalListOfEngineers" FromRole="ListOfEngineers" ToRole="ChemistryJournal" />
+        </EntityType>
+        <EntityType Name="CustomersList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="SampleMakingJournalId" Type="Int32" Nullable="false" />
+          <Property Name="SamplePrepJournalId" Type="Int32" Nullable="false" />
+          <Property Name="ChemistryJournalId" Type="Int32" Nullable="false" />
+          <Property Name="MainJournalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MainJournal" Relationship="MGDBModel.MainJournalCustomersList" FromRole="CustomersList" ToRole="MainJournal" />
+          <NavigationProperty Name="SamplePrepJournal" Relationship="MGDBModel.SamplePrepJournalCustomersList" FromRole="CustomersList" ToRole="SamplePrepJournal" />
+          <NavigationProperty Name="SampleMakingJournal" Relationship="MGDBModel.SampleMakingJournalCustomers" FromRole="CustomersList" ToRole="SampleMakingJournal" />
+          <NavigationProperty Name="ChemistryJournal" Relationship="MGDBModel.ChemistryJournalCustomersList" FromRole="CustomersList" ToRole="ChemistryJournal" />
+        </EntityType>
+        <EntityType Name="SamplePrepJournal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Task" Type="String" Nullable="false" />
+          <NavigationProperty Name="Engineer" Relationship="MGDBModel.SamplePrepJournalListOfEngineers" FromRole="SamplePrepJournal" ToRole="ListOfEngineers" />
+          <NavigationProperty Name="Customer" Relationship="MGDBModel.SamplePrepJournalCustomersList" FromRole="SamplePrepJournal" ToRole="CustomersList" />
+          <NavigationProperty Name="MVZ" Relationship="MGDBModel.SamplePrepJournalMVZList" FromRole="SamplePrepJournal" ToRole="MVZList" />
+        </EntityType>
+        <EntityType Name="SampleMakingJournal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Task" Type="String" Nullable="false" />
+          <NavigationProperty Name="Engineer" Relationship="MGDBModel.SampleMakingJournalListOfEngineers" FromRole="SampleMakingJournal" ToRole="ListOfEngineers" />
+          <NavigationProperty Name="Customer" Relationship="MGDBModel.SampleMakingJournalCustomers" FromRole="SampleMakingJournal" ToRole="CustomersList" />
+          <NavigationProperty Name="MVZ" Relationship="MGDBModel.SampleMakingJournalMVZList" FromRole="SampleMakingJournal" ToRole="MVZList" />
+        </EntityType>
+        <EntityType Name="MVZList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MVZ" Type="String" Nullable="false" MaxLength="8" FixedLength="true" />
+          <Property Name="SampleMakingJournalId" Type="Int32" Nullable="false" />
+          <Property Name="SamplePrepJournalId" Type="Int32" Nullable="false" />
+          <Property Name="ChemistryJournalId" Type="Int32" Nullable="false" />
+          <Property Name="MainJournalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MainJournal" Relationship="MGDBModel.MainJournalMVZList" FromRole="MVZList" ToRole="MainJournal" />
+          <Property Name="ChemistryJournalId1" Type="Int32" Nullable="false" />
+          <Property Name="SamplePrepJournalId1" Type="Int32" Nullable="false" />
+          <Property Name="SampleMakingJournalId1" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChemistryJournal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Steel" Type="String" Nullable="false" />
+          <Property Name="ListOfElements" Type="String" Nullable="false" />
+          <NavigationProperty Name="Engineer" Relationship="MGDBModel.ChemistryJournalListOfEngineers" FromRole="ChemistryJournal" ToRole="ListOfEngineers" />
+          <NavigationProperty Name="Customer" Relationship="MGDBModel.ChemistryJournalCustomersList" FromRole="ChemistryJournal" ToRole="CustomersList" />
+          <NavigationProperty Name="MVZ" Relationship="MGDBModel.ChemistryJournalMVZList" FromRole="ChemistryJournal" ToRole="MVZList" />
+        </EntityType>
+        <EntityType Name="TypeOfResearch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="MainJournalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MainJournal" Relationship="MGDBModel.MainJournalTypeOfResearch" FromRole="TypeOfResearch" ToRole="MainJournal" />
+        </EntityType>
+        <EntityType Name="DataJournal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SampleMarks" Type="String" Nullable="true" />
+          <Property Name="Steel" Type="String" Nullable="true" />
+          <Property Name="Melt" Type="String" Nullable="true" />
+          <Property Name="MNLZ" Type="Byte" Nullable="true" />
+          <Property Name="Slab" Type="Int16" Nullable="true" />
+          <Property Name="Part" Type="String" Nullable="true" />
+          <Property Name="Plate" Type="Int16" Nullable="true" />
+          <Property Name="Thickness" Type="Single" Nullable="true" />
+          <Property Name="TypeOfTest" Type="String" Nullable="true" />
+          <Property Name="Requirements" Type="String" Nullable="true" />
+          <Property Name="ResultsOfTest" Type="String" Nullable="true" />
+          <NavigationProperty Name="MainJournal" Relationship="MGDBModel.MainJournalDataJournal" FromRole="DataJournal" ToRole="MainJournal" />
+        </EntityType>
+        <Association Name="MainJournalCustomersList">
+          <End Type="MGDBModel.MainJournal" Role="MainJournal" Multiplicity="1" />
+          <End Type="MGDBModel.CustomersList" Role="CustomersList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomersList">
+              <PropertyRef Name="MainJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MainJournalMVZList">
+          <End Type="MGDBModel.MainJournal" Role="MainJournal" Multiplicity="1" />
+          <End Type="MGDBModel.MVZList" Role="MVZList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MVZList">
+              <PropertyRef Name="MainJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MainJournalTypeOfResearch">
+          <End Type="MGDBModel.MainJournal" Role="MainJournal" Multiplicity="1" />
+          <End Type="MGDBModel.TypeOfResearch" Role="TypeOfResearch" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TypeOfResearch">
+              <PropertyRef Name="MainJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MainJournalListOfEngineers">
+          <End Type="MGDBModel.MainJournal" Role="MainJournal" Multiplicity="1" />
+          <End Type="MGDBModel.ListOfEngineers" Role="ListOfEngineers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MainJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListOfEngineers">
+              <PropertyRef Name="MainJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MainJournalDataJournal">
+          <End Type="MGDBModel.MainJournal" Role="MainJournal" Multiplicity="1" />
+          <End Type="MGDBModel.DataJournal" Role="DataJournal" Multiplicity="1" />
+        </Association>
+        <Association Name="SamplePrepJournalListOfEngineers">
+          <End Type="MGDBModel.SamplePrepJournal" Role="SamplePrepJournal" Multiplicity="1" />
+          <End Type="MGDBModel.ListOfEngineers" Role="ListOfEngineers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SamplePrepJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListOfEngineers">
+              <PropertyRef Name="SamplePrepJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SamplePrepJournalCustomersList">
+          <End Type="MGDBModel.SamplePrepJournal" Role="SamplePrepJournal" Multiplicity="1" />
+          <End Type="MGDBModel.CustomersList" Role="CustomersList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SamplePrepJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomersList">
+              <PropertyRef Name="SamplePrepJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SampleMakingJournalListOfEngineers">
+          <End Type="MGDBModel.SampleMakingJournal" Role="SampleMakingJournal" Multiplicity="1" />
+          <End Type="MGDBModel.ListOfEngineers" Role="ListOfEngineers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SampleMakingJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListOfEngineers">
+              <PropertyRef Name="SampleMakingJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SampleMakingJournalCustomers">
+          <End Type="MGDBModel.SampleMakingJournal" Role="SampleMakingJournal" Multiplicity="1" />
+          <End Type="MGDBModel.CustomersList" Role="CustomersList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SampleMakingJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomersList">
+              <PropertyRef Name="SampleMakingJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ChemistryJournalListOfEngineers">
+          <End Type="MGDBModel.ChemistryJournal" Role="ChemistryJournal" Multiplicity="1" />
+          <End Type="MGDBModel.ListOfEngineers" Role="ListOfEngineers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChemistryJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ListOfEngineers">
+              <PropertyRef Name="ChemistryJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ChemistryJournalCustomersList">
+          <End Type="MGDBModel.ChemistryJournal" Role="ChemistryJournal" Multiplicity="1" />
+          <End Type="MGDBModel.CustomersList" Role="CustomersList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChemistryJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CustomersList">
+              <PropertyRef Name="ChemistryJournalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ChemistryJournalMVZList">
+          <End Type="MGDBModel.ChemistryJournal" Role="ChemistryJournal" Multiplicity="1" />
+          <End Type="MGDBModel.MVZList" Role="MVZList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ChemistryJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MVZList">
+              <PropertyRef Name="ChemistryJournalId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SamplePrepJournalMVZList">
+          <End Type="MGDBModel.SamplePrepJournal" Role="SamplePrepJournal" Multiplicity="1" />
+          <End Type="MGDBModel.MVZList" Role="MVZList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SamplePrepJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MVZList">
+              <PropertyRef Name="SamplePrepJournalId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SampleMakingJournalMVZList">
+          <End Type="MGDBModel.SampleMakingJournal" Role="SampleMakingJournal" Multiplicity="1" />
+          <End Type="MGDBModel.MVZList" Role="MVZList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SampleMakingJournal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MVZList">
+              <PropertyRef Name="SampleMakingJournalId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MGDBModelStoreContainer" CdmEntityContainer="MGDBModelContainer">
+    <EntitySetMapping Name="MainJournalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.MainJournal)">
+        <MappingFragment StoreEntitySet="MainJournalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="NumberOfSamples" ColumnName="NumberOfSamples" />
+          <ScalarProperty Name="Notation" ColumnName="Notation" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+          <ScalarProperty Name="ResearchResults" ColumnName="ResearchResults" />
+          <ScalarProperty Name="TypeOfDefect" ColumnName="TypeOfDefect" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="Document1" ColumnName="Document1" />
+          <ScalarProperty Name="Document2" ColumnName="Document2" />
+          <ScalarProperty Name="Document3" ColumnName="Document3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ListOfEngineersSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.ListOfEngineers)">
+        <MappingFragment StoreEntitySet="ListOfEngineersSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="SampleMakingJournalId" ColumnName="SampleMakingJournalId" />
+          <ScalarProperty Name="SamplePrepJournalId" ColumnName="SamplePrepJournalId" />
+          <ScalarProperty Name="ChemistryJournalId" ColumnName="ChemistryJournalId" />
+          <ScalarProperty Name="MainJournalId" ColumnName="MainJournalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomersListSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.CustomersList)">
+        <MappingFragment StoreEntitySet="CustomersListSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SampleMakingJournalId" ColumnName="SampleMakingJournalId" />
+          <ScalarProperty Name="SamplePrepJournalId" ColumnName="SamplePrepJournalId" />
+          <ScalarProperty Name="ChemistryJournalId" ColumnName="ChemistryJournalId" />
+          <ScalarProperty Name="MainJournalId" ColumnName="MainJournalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SamplePrepJournalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.SamplePrepJournal)">
+        <MappingFragment StoreEntitySet="SamplePrepJournalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Task" ColumnName="Task" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SampleMakingJournalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.SampleMakingJournal)">
+        <MappingFragment StoreEntitySet="SampleMakingJournalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Task" ColumnName="Task" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MVZListSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.MVZList)">
+        <MappingFragment StoreEntitySet="MVZListSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MVZ" ColumnName="MVZ" />
+          <ScalarProperty Name="SampleMakingJournalId" ColumnName="SampleMakingJournalId" />
+          <ScalarProperty Name="SamplePrepJournalId" ColumnName="SamplePrepJournalId" />
+          <ScalarProperty Name="ChemistryJournalId" ColumnName="ChemistryJournalId" />
+          <ScalarProperty Name="MainJournalId" ColumnName="MainJournalId" />
+          <ScalarProperty Name="ChemistryJournalId1" ColumnName="ChemistryJournalId1" />
+          <ScalarProperty Name="SamplePrepJournalId1" ColumnName="SamplePrepJournalId1" />
+          <ScalarProperty Name="SampleMakingJournalId1" ColumnName="SampleMakingJournalId1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChemistryJournalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.ChemistryJournal)">
+        <MappingFragment StoreEntitySet="ChemistryJournalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Steel" ColumnName="Steel" />
+          <ScalarProperty Name="ListOfElements" ColumnName="ListOfElements" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TypeOfResearchSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.TypeOfResearch)">
+        <MappingFragment StoreEntitySet="TypeOfResearchSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="MainJournalId" ColumnName="MainJournalId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataJournalSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.DataJournal)">
+        <MappingFragment StoreEntitySet="DataJournalSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SampleMarks" ColumnName="SampleMarks" />
+          <ScalarProperty Name="Steel" ColumnName="Steel" />
+          <ScalarProperty Name="Melt" ColumnName="Melt" />
+          <ScalarProperty Name="MNLZ" ColumnName="MNLZ" />
+          <ScalarProperty Name="Slab" ColumnName="Slab" />
+          <ScalarProperty Name="Part" ColumnName="Part" />
+          <ScalarProperty Name="Plate" ColumnName="Plate" />
+          <ScalarProperty Name="Thickness" ColumnName="Thickness" />
+          <ScalarProperty Name="TypeOfTest" ColumnName="TypeOfTest" />
+          <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+          <ScalarProperty Name="ResultsOfTest" ColumnName="ResultsOfTest" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MainJournalDataJournal" TypeName="MGDBModel.MainJournalDataJournal" StoreEntitySet="MainJournalSet">
+      <EndProperty Name="DataJournal">
+        <ScalarProperty Name="Id" ColumnName="ResearchData_Id" />
+      </EndProperty>
+      <EndProperty Name="MainJournal">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
