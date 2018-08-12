@@ -4,23 +4,81 @@
               xmlns:catel="http://schemas.catelproject.com"
               ResizeMode="CanResize" Title="База данных Группы металловедения ЛМКиКИ ЦМИ">
 
-     <Grid x:Name="LayoutRoot">
+    <catel:Window.Resources>
+        <catel:ViewModelToViewConverter x:Key="viewModelToViewConverter">
+
+        </catel:ViewModelToViewConverter>
+        <Image x:Key="CloseTabIcon" Source="../Icons/CloseTabIcon.png" />
+    </catel:Window.Resources>
+    <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Menu HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" IsMainMenu="True">
             <MenuItem Header="Приложение" >
-                <MenuItem Header="Выход" />
+                <MenuItem Header="Выход" Command="{Binding ExitCommand}" />
             </MenuItem>
             <MenuItem Header="Журналы">
-                
+                <MenuItem Header="Журнал регистрации исследований" Command="{Binding RegistrationJournalCommand}"></MenuItem>
+                <MenuItem Header="Журнал регистрации заказов на порезку проб" Command="{Binding Test1}"></MenuItem>
+                <MenuItem Header="Журнал регистрации заказов на проведение КХА" Command="{Binding Test1}"></MenuItem>
+                <MenuItem Header="Журнал регистрации заказов для участка макро- и микроконтроля" Command="{Binding Test1}"></MenuItem>
             </MenuItem>
             <MenuItem Header="Отчеты">
-                
+
             </MenuItem>
         </Menu>
+        <TabControl 
+            Grid.Row="1" 
+            VerticalAlignment="Stretch" 
+            ItemsSource="{Binding TabItems}"
+            SelectedItem="{Binding SelectedTabItem}">
+            <!--<TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch" Margin="2" MinWidth="100">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <ContentPresenter Content="{Binding}" Grid.Column="0"
+                                        HorizontalAlignment="Center"/>
+                                    <Button Width="15" Height="15" Grid.Column="1" Content="{StaticResource CloseTabIcon}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>-->
+
+            <!--<TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentControl
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        Content="{Binding CurrentWindow, Converter={StaticResource viewModelToViewConverter}}">
+                    </ContentControl>
+                </DataTemplate>
+            </TabControl.ContentTemplate>-->
+            <!--<ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <TabItem>
+                        <TabItem.Content>
+                            <ContentControl
+                                VerticalAlignment="Stretch"
+                                HorizontalAlignment="Stretch"
+                                Content="{Binding CurrentWindow, Converter={StaticResource viewModelToViewConverter}}">
+                            </ContentControl>
+                        </TabItem.Content>
+                    </TabItem>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>-->
+        </TabControl>
     </Grid>
-    
+
 </catel:Window>

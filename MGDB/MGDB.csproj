@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-	<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
@@ -98,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\RegistrationJournalView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,53 +110,57 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ChemistryJournal.cs">
+    <Compile Include="Models\ChemistryJournal.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CustomersList.cs">
+    <Compile Include="Models\CustomersList.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataJournal.cs">
+    <Compile Include="Models\DataJournal.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ListOfEngineers.cs">
+    <Compile Include="Models\ListOfEngineers.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MainJournal.cs">
+    <Compile Include="Models\MainJournal.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MGDBModel.Context.cs">
+    <Compile Include="Models\MGDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MGDBModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="MGDBModel.cs">
+    <Compile Include="Models\MGDBModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MGDBModel.Designer.cs">
+    <Compile Include="Models\MGDBModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MGDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="MVZList.cs">
+    <Compile Include="Models\MVZList.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SampleMakingJournal.cs">
+    <Compile Include="Models\SampleMakingJournal.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="SamplePrepJournal.cs">
+    <Compile Include="Models\SamplePrepJournal.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="StatusEnum.cs">
+    <Compile Include="Models\StatusEnum.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TypeOfDefectEnum.cs">
+    <Compile Include="Models\TypeOfDefectEnum.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="TypeOfResearch.cs">
+    <Compile Include="Models\TypeOfResearch.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\RegistrationJournalViewModel.cs" />
+    <Compile Include="Views\RegistrationJournalView.xaml.cs">
+      <DependentUpon>RegistrationJournalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -179,11 +187,11 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <EntityDeploy Include="MGDBModel.edmx">
+    <EntityDeploy Include="Models\MGDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MGDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="MGDBModel.edmx.diagram">
+    <None Include="Models\MGDBModel.edmx.diagram">
       <DependentUpon>MGDBModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
@@ -195,17 +203,17 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MGDBModel.Context.tt">
+    <Resource Include="Icons\CloseTabIcon.png" />
+    <Content Include="Models\MGDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MGDBModel.Context.cs</LastGenOutput>
       <DependentUpon>MGDBModel.edmx</DependentUpon>
     </Content>
-    <Content Include="MGDBModel.edmx.sql" />
-    <Content Include="MGDBModel.tt">
+    <Content Include="Models\MGDBModel.edmx.sql" />
+    <Content Include="Models\MGDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MGDBModel.cs</LastGenOutput>
       <DependentUpon>MGDBModel.edmx</DependentUpon>

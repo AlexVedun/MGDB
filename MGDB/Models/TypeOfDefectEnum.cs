@@ -7,23 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MGDB
+namespace MGDB.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class MVZList
+    public enum TypeOfDefectEnum : int
     {
-        public int Id { get; set; }
-        public string MVZ { get; set; }
-        public int SampleMakingJournalId { get; set; }
-        public int SamplePrepJournalId { get; set; }
-        public int ChemistryJournalId { get; set; }
-        public int MainJournalId { get; set; }
-        public int ChemistryJournalId1 { get; set; }
-        public int SamplePrepJournalId1 { get; set; }
-        public int SampleMakingJournalId1 { get; set; }
-    
-        public virtual MainJournal MainJournal { get; set; }
+        IsSteelmaking = 0,
+        IsRolling = 1,
+        IsBoth = 2
     }
 }

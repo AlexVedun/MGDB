@@ -7,15 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MGDB
+namespace MGDB.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public enum StatusEnum : int
+    public partial class MVZList
     {
-        IsInWork = 0,
-        IsDone = 1,
-        IsSuspended = 2,
-        IsCanceled = 3
+        public int Id { get; set; }
+        public string MVZ { get; set; }
     }
 }

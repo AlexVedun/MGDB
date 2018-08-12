@@ -6,28 +6,28 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3e050a31c3824748be2b67c31f2b7fc7" Name="Diagram1" ZoomLevel="101" >
         <EntityTypeShape EntityType="MGDBModel.MainJournal" Width="1.5" PointX="26.125" PointY="8.5" />
-        <EntityTypeShape EntityType="MGDBModel.ListOfEngineers" Width="1.5" PointX="28.875" PointY="8.5" />
-        <EntityTypeShape EntityType="MGDBModel.CustomersList" Width="1.5" PointX="31" PointY="8.5" />
-        <EntityTypeShape EntityType="MGDBModel.SamplePrepJournal" Width="1.5" PointX="31.5" PointY="12.625" />
-        <EntityTypeShape EntityType="MGDBModel.SampleMakingJournal" Width="1.5" PointX="33.625" PointY="12.625" />
-        <EntityTypeShape EntityType="MGDBModel.MVZList" Width="1.5" PointX="33.5" PointY="8.5" />
+        <EntityTypeShape EntityType="MGDBModel.ListOfEngineers" Width="2" PointX="28.875" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MGDBModel.CustomersList" Width="2" PointX="31.375" PointY="8.5" />
+        <EntityTypeShape EntityType="MGDBModel.SamplePrepJournal" Width="1.5" PointX="30.875" PointY="12.625" />
+        <EntityTypeShape EntityType="MGDBModel.SampleMakingJournal" Width="1.5" PointX="32.875" PointY="12.625" />
+        <EntityTypeShape EntityType="MGDBModel.MVZList" Width="2.125" PointX="33.75" PointY="8.5" />
         <EntityTypeShape EntityType="MGDBModel.ChemistryJournal" Width="1.5" PointX="28.875" PointY="12.625" />
         <EntityTypeShape EntityType="MGDBModel.TypeOfResearch" Width="1.5" PointX="26.125" PointY="13.625" />
         <EntityTypeShape EntityType="MGDBModel.DataJournal" Width="1.5" PointX="23.75" PointY="8.5" />
-        <AssociationConnector Association="MGDBModel.MainJournalCustomersList" />
-        <AssociationConnector Association="MGDBModel.MainJournalMVZList" />
-        <AssociationConnector Association="MGDBModel.MainJournalTypeOfResearch" />
-        <AssociationConnector Association="MGDBModel.MainJournalListOfEngineers" />
         <AssociationConnector Association="MGDBModel.MainJournalDataJournal" />
-        <AssociationConnector Association="MGDBModel.SamplePrepJournalListOfEngineers" />
-        <AssociationConnector Association="MGDBModel.SamplePrepJournalCustomersList" />
-        <AssociationConnector Association="MGDBModel.SampleMakingJournalListOfEngineers" />
-        <AssociationConnector Association="MGDBModel.SampleMakingJournalCustomers" />
-        <AssociationConnector Association="MGDBModel.ChemistryJournalListOfEngineers" />
-        <AssociationConnector Association="MGDBModel.ChemistryJournalCustomersList" />
+        <AssociationConnector Association="MGDBModel.MainJournalTypeOfResearch" />
         <AssociationConnector Association="MGDBModel.ChemistryJournalMVZList" />
         <AssociationConnector Association="MGDBModel.SamplePrepJournalMVZList" />
         <AssociationConnector Association="MGDBModel.SampleMakingJournalMVZList" />
+        <AssociationConnector Association="MGDBModel.MainJournalMVZList" />
+        <AssociationConnector Association="MGDBModel.MainJournalListOfEngineers" />
+        <AssociationConnector Association="MGDBModel.ChemistryJournalListOfEngineers" />
+        <AssociationConnector Association="MGDBModel.SamplePrepJournalListOfEngineers" />
+        <AssociationConnector Association="MGDBModel.SampleMakingJournalListOfEngineers" />
+        <AssociationConnector Association="MGDBModel.MainJournalCustomersList" />
+        <AssociationConnector Association="MGDBModel.ChemistryJournalCustomersList" />
+        <AssociationConnector Association="MGDBModel.SamplePrepJournalCustomersList" />
+        <AssociationConnector Association="MGDBModel.SampleMakingJournalCustomersList" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

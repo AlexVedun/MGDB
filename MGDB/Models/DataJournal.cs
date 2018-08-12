@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MGDB
+namespace MGDB.Models
 {
     using System;
     using System.Collections.Generic;

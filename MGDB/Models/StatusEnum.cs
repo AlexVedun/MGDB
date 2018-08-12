@@ -7,17 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MGDB
+namespace MGDB.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class TypeOfResearch
+    public enum StatusEnum : int
     {
-        public int Id { get; set; }
-        public string Type { get; set; }
-        public int MainJournalId { get; set; }
-    
-        public virtual MainJournal MainJournal { get; set; }
+        IsInWork = 0,
+        IsDone = 1,
+        IsSuspended = 2,
+        IsCanceled = 3
     }
 }

@@ -7,23 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MGDB
+namespace MGDB.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomersList
+    public partial class TypeOfResearch
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public int SampleMakingJournalId { get; set; }
-        public int SamplePrepJournalId { get; set; }
-        public int ChemistryJournalId { get; set; }
-        public int MainJournalId { get; set; }
-    
-        public virtual MainJournal MainJournal { get; set; }
-        public virtual SamplePrepJournal SamplePrepJournal { get; set; }
-        public virtual SampleMakingJournal SampleMakingJournal { get; set; }
-        public virtual ChemistryJournal ChemistryJournal { get; set; }
+        public string Type { get; set; }
     }
 }

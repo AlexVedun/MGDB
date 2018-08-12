@@ -7,14 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MGDB
+namespace MGDB.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public enum TypeOfDefectEnum : int
+    public partial class ListOfEngineers
     {
-        IsSteelmaking = 0,
-        IsRolling = 1,
-        IsBoth = 2
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
     }
 }
