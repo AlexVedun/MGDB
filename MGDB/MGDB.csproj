@@ -98,6 +98,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RegistrationJournalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,16 +117,10 @@
     <Compile Include="Models\ChemistryJournal.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomersList.cs">
+    <Compile Include="Models\Customer.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataJournal.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ListOfEngineers.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MainJournal.cs">
+    <Compile Include="Models\Engineer.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MGDBModel.Context.cs">
@@ -140,7 +138,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MGDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\MVZList.cs">
+    <Compile Include="Models\MVZ.cs">
+      <DependentUpon>MGDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Research.cs">
+      <DependentUpon>MGDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ResearchData.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SampleMakingJournal.cs">
@@ -158,7 +162,11 @@
     <Compile Include="Models\TypeOfResearch.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationJournalViewModel.cs" />
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegistrationJournalView.xaml.cs">
       <DependentUpon>RegistrationJournalView.xaml</DependentUpon>
     </Compile>

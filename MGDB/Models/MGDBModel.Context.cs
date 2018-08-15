@@ -25,14 +25,14 @@ namespace MGDB.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MainJournal> MainJournalSet { get; set; }
-        public virtual DbSet<ListOfEngineers> ListOfEngineersSet { get; set; }
-        public virtual DbSet<CustomersList> CustomersListSet { get; set; }
+        public virtual DbSet<Research> ResearchSet { get; set; }
+        public virtual DbSet<Engineer> EngineerSet { get; set; }
+        public virtual DbSet<Customer> CustomerSet { get; set; }
         public virtual DbSet<SamplePrepJournal> SamplePrepJournalSet { get; set; }
         public virtual DbSet<SampleMakingJournal> SampleMakingJournalSet { get; set; }
-        public virtual DbSet<MVZList> MVZListSet { get; set; }
+        public virtual DbSet<MVZ> MVZSet { get; set; }
         public virtual DbSet<ChemistryJournal> ChemistryJournalSet { get; set; }
         public virtual DbSet<TypeOfResearch> TypeOfResearchSet { get; set; }
-        public virtual DbSet<DataJournal> DataJournalSet { get; set; }
+        public virtual DbSet<ResearchData> ResearchDataSet { get; set; }
     }
 }

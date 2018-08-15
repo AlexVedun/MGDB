@@ -12,21 +12,18 @@ namespace MGDB.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DataJournal
+    public partial class Customer
     {
-        public int Id { get; set; }
-        public string SampleMarks { get; set; }
-        public string Steel { get; set; }
-        public string Melt { get; set; }
-        public Nullable<byte> MNLZ { get; set; }
-        public Nullable<short> Slab { get; set; }
-        public string Part { get; set; }
-        public Nullable<short> Plate { get; set; }
-        public Nullable<float> Thickness { get; set; }
-        public string TypeOfTest { get; set; }
-        public string Requirements { get; set; }
-        public string ResultsOfTest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Customer()
+        {
+            this.MVZList = new HashSet<MVZ>();
+        }
     
-        public virtual MainJournal MainJournal { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<MVZ> MVZList { get; set; }
     }
 }

@@ -12,17 +12,8 @@ namespace MGDB.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class MainJournal
+    public partial class Research
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public MainJournal()
-        {
-            this.Type = new HashSet<TypeOfResearch>();
-            this.MVZ = new HashSet<MVZList>();
-            this.Engineer = new HashSet<ListOfEngineers>();
-            this.Customer = new HashSet<CustomersList>();
-        }
-    
         public int Id { get; set; }
         public string Number { get; set; }
         public System.DateTime Date { get; set; }
@@ -33,19 +24,19 @@ namespace MGDB.Models
         public string StatusDescription { get; set; }
         public string ResearchResults { get; set; }
         public Nullable<TypeOfDefectEnum> TypeOfDefect { get; set; }
-        public System.DateTime FinishDate { get; set; }
+        public Nullable<System.DateTime> FinishDate { get; set; }
         public byte[] Document1 { get; set; }
         public byte[] Document2 { get; set; }
         public byte[] Document3 { get; set; }
+        public int ListOfEngineersId { get; set; }
+        public int MVZListId { get; set; }
+        public int CustomersListId { get; set; }
+        public int TypeOfResearchId { get; set; }
     
-        public virtual DataJournal ResearchData { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TypeOfResearch> Type { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MVZList> MVZ { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ListOfEngineers> Engineer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomersList> Customer { get; set; }
+        public virtual Engineer Engineer { get; set; }
+        public virtual MVZ MVZ { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual TypeOfResearch Type { get; set; }
+        public virtual ResearchData ResearchData { get; set; }
     }
 }

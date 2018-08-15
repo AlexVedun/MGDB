@@ -21,37 +21,45 @@ namespace MGDB
                 //{
                 //    JournalData.Add(item);
                 //}
-                //ListOfEngineers engineer = new ListOfEngineers();
-                //engineer.Name = "Ефременко А.В.";
-                //engineer.Password = "1984";
-                //db.ListOfEngineersSet.Add(engineer);
-                //CustomersList customer = new CustomersList();
-                //customer.Name = "ТЛЦ";
-                //db.CustomersListSet.Add(customer);
+                Engineer engineer = new Engineer();
+                engineer.Name = "Ефременко А.В.";
+                engineer.Password = "1984";
+                db.EngineerSet.Add(engineer);
+                Customer customer = new Customer();
+                customer.Name = "ТЛЦ";
+                customer.MVZList.Add(new MVZ { Text = "000-0091" });
+                customer.MVZList.Add(new MVZ { Text = "000-9091" });
+                customer.MVZList.Add(new MVZ { Text = "009-9091" });
+                db.CustomerSet.Add(customer);
                 //MVZList MVZ = new MVZList();
                 //MVZ.MVZ = "009-9091";
                 //db.MVZListSet.Add(MVZ);
-                //TypeOfResearch typeOfRes = new TypeOfResearch();
-                //typeOfRes.Type = "Поломки";
-                //db.TypeOfResearchSet.Add(typeOfRes);
-                //TypeOfResearch typeOfRes2 = new TypeOfResearch();
-                //typeOfRes2.Type = "Дефекты металлопродукции";
-                //db.TypeOfResearchSet.Add(typeOfRes2);
+                TypeOfResearch typeOfRes = new TypeOfResearch();
+                typeOfRes.Type = "Поломки";
+                db.TypeOfResearchSet.Add(typeOfRes);
+                TypeOfResearch typeOfRes2 = new TypeOfResearch();
+                typeOfRes2.Type = "Дефекты металлопродукции";
+                db.TypeOfResearchSet.Add(typeOfRes2);
+                db.SaveChanges();
 
-                //MainJournal rec = new MainJournal();
-                //rec.Date = DateTime.Now;
-                //rec.Number = "18-001";
-                //rec.Customer = (ICollection<CustomersList>)db.CustomersListSet.FirstOrDefault(x => x.Name == "ТЛЦ");
-                //rec.Engineer = (ICollection<ListOfEngineers>)db.ListOfEngineersSet.FirstOrDefault(x => x.Name == "Ефременко А.В.");
-                //rec.MVZ = (ICollection<MVZList>)db.MVZListSet.FirstOrDefault(x => x.MVZ == "009-9091");
-                //rec.Type = (ICollection<TypeOfResearch>)db.TypeOfResearchSet.FirstOrDefault(x => x.Type == "Дефекты металлопродукции");
-                //rec.Description = "Металлографическое исследование пробы от листа";
-                //rec.Notation = "Проба от листа";
-                //rec.Status = StatusEnum.IsInWork;
-                //db.SaveChanges();
+                Research rec = new Research();
+                rec.Date = DateTime.Now;
+                rec.Number = "18-001";
+                rec.Customer = db.CustomerSet.FirstOrDefault(x => x.Name == "ТЛЦ");
+                rec.Engineer = db.EngineerSet.FirstOrDefault(x => x.Name == "Ефременко А.В.");
+                rec.MVZ = db.MVZSet.FirstOrDefault(x => x.Text == "009-9091");
+                rec.Type = db.TypeOfResearchSet.FirstOrDefault(x => x.Type == "Дефекты металлопродукции");
+                rec.Description = "Металлографическое исследование пробы от листа";
+                rec.Notation = "Проба от листа";
+                rec.Status = StatusEnum.IsInWork;
+                rec.FinishDate = DateTime.Now;
+                ResearchData dataJ = new ResearchData();
+                rec.ResearchData = dataJ;
+                db.ResearchSet.Add(rec);
+                db.SaveChanges();
                 //MainJournal rec1 = new MainJournal();
                 //rec1.
-                JournalData = db.MainJournalSet.Local;
+                JournalData = db.ResearchSet.Local;
             }
         }
 
@@ -60,13 +68,13 @@ namespace MGDB
 
         }
 
-        public ObservableCollection<MainJournal> JournalData
+        public ObservableCollection<Research> JournalData
         {
-            get { return GetValue<ObservableCollection<MainJournal>>(JournalDataProperty); }
+            get { return GetValue<ObservableCollection<Research>>(JournalDataProperty); }
             set { SetValue(JournalDataProperty, value); }
         }
 
-        public static readonly PropertyData JournalDataProperty = RegisterProperty(nameof(JournalData), typeof(ObservableCollection<MainJournal>), null);
+        public static readonly PropertyData JournalDataProperty = RegisterProperty(nameof(JournalData), typeof(ObservableCollection<Research>), null);
         
         public override string Title { get { return ""; } }
 

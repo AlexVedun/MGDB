@@ -14,23 +14,15 @@ namespace MGDB.Models
     
     public partial class SampleMakingJournal
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SampleMakingJournal()
-        {
-            this.MVZ = new HashSet<MVZList>();
-            this.Engineer = new HashSet<ListOfEngineers>();
-            this.Customer = new HashSet<CustomersList>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime Date { get; set; }
         public string Task { get; set; }
+        public int ListOfEngineersId { get; set; }
+        public int CustomersListId { get; set; }
+        public int MVZListId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MVZList> MVZ { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ListOfEngineers> Engineer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomersList> Customer { get; set; }
+        public virtual Engineer Engineer { get; set; }
+        public virtual Customer Customer { get; set; }
+        public virtual MVZ MVZ { get; set; }
     }
 }
