@@ -12,9 +12,10 @@ namespace MGDB.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class ChemistryJournal
+    public partial class ChemistryRecord
     {
         public int Id { get; set; }
+        public string Number { get; set; }
         public System.DateTime Date { get; set; }
         public string Description { get; set; }
         public string Steel { get; set; }

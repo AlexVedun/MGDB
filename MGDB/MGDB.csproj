@@ -114,7 +114,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\ChemistryJournal.cs">
+    <Compile Include="Models\ChemistryRecord.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
@@ -147,10 +147,10 @@
     <Compile Include="Models\ResearchData.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SampleMakingJournal.cs">
+    <Compile Include="Models\SampleMakingRecord.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SamplePrepJournal.cs">
+    <Compile Include="Models\SamplePrepRecord.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusEnum.cs">

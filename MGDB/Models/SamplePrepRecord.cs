@@ -12,9 +12,10 @@ namespace MGDB.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SamplePrepJournal
+    public partial class SamplePrepRecord
     {
         public int Id { get; set; }
+        public string Number { get; set; }
         public System.DateTime Date { get; set; }
         public string Task { get; set; }
         public int ListOfEngineersId { get; set; }

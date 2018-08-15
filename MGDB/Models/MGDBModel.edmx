@@ -9,10 +9,10 @@
     <EntitySet Name="ResearchSet" EntityType="MGDBModel.Store.ResearchSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EngineerSet" EntityType="MGDBModel.Store.EngineerSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CustomerSet" EntityType="MGDBModel.Store.CustomerSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SamplePrepJournalSet" EntityType="MGDBModel.Store.SamplePrepJournalSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="SampleMakingJournalSet" EntityType="MGDBModel.Store.SampleMakingJournalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SamplePrepRecordSet" EntityType="MGDBModel.Store.SamplePrepRecordSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SampleMakingRecordSet" EntityType="MGDBModel.Store.SampleMakingRecordSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="MVZSet" EntityType="MGDBModel.Store.MVZSet" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ChemistryJournalSet" EntityType="MGDBModel.Store.ChemistryJournalSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ChemistryRecordSet" EntityType="MGDBModel.Store.ChemistryRecordSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TypeOfResearchSet" EntityType="MGDBModel.Store.TypeOfResearchSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ResearchDataSet" EntityType="MGDBModel.Store.ResearchDataSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="MainJournalListOfEngineers" Association="MGDBModel.Store.MainJournalListOfEngineers">
@@ -32,39 +32,39 @@
       <End Role="TypeOfResearch" EntitySet="TypeOfResearchSet" />
     </AssociationSet>
     <AssociationSet Name="ChemistryJournalListOfEngineers" Association="MGDBModel.Store.ChemistryJournalListOfEngineers">
-      <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+      <End Role="ChemistryJournal" EntitySet="ChemistryRecordSet" />
       <End Role="ListOfEngineers" EntitySet="EngineerSet" />
     </AssociationSet>
     <AssociationSet Name="ChemistryJournalCustomersList" Association="MGDBModel.Store.ChemistryJournalCustomersList">
-      <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+      <End Role="ChemistryJournal" EntitySet="ChemistryRecordSet" />
       <End Role="CustomersList" EntitySet="CustomerSet" />
     </AssociationSet>
     <AssociationSet Name="ChemistryJournalMVZList" Association="MGDBModel.Store.ChemistryJournalMVZList">
-      <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+      <End Role="ChemistryJournal" EntitySet="ChemistryRecordSet" />
       <End Role="MVZList" EntitySet="MVZSet" />
     </AssociationSet>
     <AssociationSet Name="SamplePrepJournalListOfEngineers" Association="MGDBModel.Store.SamplePrepJournalListOfEngineers">
-      <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+      <End Role="SamplePrepJournal" EntitySet="SamplePrepRecordSet" />
       <End Role="ListOfEngineers" EntitySet="EngineerSet" />
     </AssociationSet>
     <AssociationSet Name="SamplePrepJournalCustomersList" Association="MGDBModel.Store.SamplePrepJournalCustomersList">
-      <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+      <End Role="SamplePrepJournal" EntitySet="SamplePrepRecordSet" />
       <End Role="CustomersList" EntitySet="CustomerSet" />
     </AssociationSet>
     <AssociationSet Name="SamplePrepJournalMVZList" Association="MGDBModel.Store.SamplePrepJournalMVZList">
-      <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+      <End Role="SamplePrepJournal" EntitySet="SamplePrepRecordSet" />
       <End Role="MVZList" EntitySet="MVZSet" />
     </AssociationSet>
     <AssociationSet Name="SampleMakingJournalListOfEngineers" Association="MGDBModel.Store.SampleMakingJournalListOfEngineers">
-      <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+      <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
       <End Role="ListOfEngineers" EntitySet="EngineerSet" />
     </AssociationSet>
     <AssociationSet Name="SampleMakingJournalCustomersList" Association="MGDBModel.Store.SampleMakingJournalCustomersList">
-      <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+      <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
       <End Role="CustomersList" EntitySet="CustomerSet" />
     </AssociationSet>
     <AssociationSet Name="SampleMakingJournalMVZList" Association="MGDBModel.Store.SampleMakingJournalMVZList">
-      <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+      <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
       <End Role="MVZList" EntitySet="MVZSet" />
     </AssociationSet>
     <AssociationSet Name="CustomersListMVZList" Association="MGDBModel.Store.CustomersListMVZList">
@@ -115,24 +115,26 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
-  <EntityType Name="SamplePrepJournalSet">
+  <EntityType Name="SamplePrepRecordSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nchar" Nullable="false" MaxLength="8" />
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="Task" Type="nvarchar(max)" Nullable="false" />
     <Property Name="ListOfEngineersId" Type="int" Nullable="false" />
     <Property Name="CustomersListId" Type="int" Nullable="false" />
     <Property Name="MVZListId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="SampleMakingJournalSet">
+  <EntityType Name="SampleMakingRecordSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nchar" Nullable="false" MaxLength="8" />
     <Property Name="Date" Type="datetime" Nullable="false" />
-    <Property Name="Task" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Task" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="ListOfEngineersId" Type="int" Nullable="false" />
     <Property Name="CustomersListId" Type="int" Nullable="false" />
     <Property Name="MVZListId" Type="int" Nullable="false" />
@@ -145,11 +147,12 @@
     <Property Name="Text" Type="nchar" Nullable="false" MaxLength="8" />
     <Property Name="CustomersListId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="ChemistryJournalSet">
+  <EntityType Name="ChemistryRecordSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nchar" Nullable="false" MaxLength="8" />
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Steel" Type="nvarchar(max)" Nullable="false" />
@@ -231,7 +234,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ChemistryJournalListOfEngineers">
-    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryJournalSet" Multiplicity="*" />
+    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryRecordSet" Multiplicity="*" />
     <End Role="ListOfEngineers" Type="MGDBModel.Store.EngineerSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="ListOfEngineers">
@@ -243,7 +246,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ChemistryJournalCustomersList">
-    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryJournalSet" Multiplicity="*" />
+    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryRecordSet" Multiplicity="*" />
     <End Role="CustomersList" Type="MGDBModel.Store.CustomerSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="CustomersList">
@@ -255,7 +258,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ChemistryJournalMVZList">
-    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryJournalSet" Multiplicity="*" />
+    <End Role="ChemistryJournal" Type="MGDBModel.Store.ChemistryRecordSet" Multiplicity="*" />
     <End Role="MVZList" Type="MGDBModel.Store.MVZSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="MVZList">
@@ -267,7 +270,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SamplePrepJournalListOfEngineers">
-    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepJournalSet" Multiplicity="*" />
+    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepRecordSet" Multiplicity="*" />
     <End Role="ListOfEngineers" Type="MGDBModel.Store.EngineerSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="ListOfEngineers">
@@ -279,7 +282,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SamplePrepJournalCustomersList">
-    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepJournalSet" Multiplicity="*" />
+    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepRecordSet" Multiplicity="*" />
     <End Role="CustomersList" Type="MGDBModel.Store.CustomerSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="CustomersList">
@@ -291,7 +294,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SamplePrepJournalMVZList">
-    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepJournalSet" Multiplicity="*" />
+    <End Role="SamplePrepJournal" Type="MGDBModel.Store.SamplePrepRecordSet" Multiplicity="*" />
     <End Role="MVZList" Type="MGDBModel.Store.MVZSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="MVZList">
@@ -303,7 +306,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SampleMakingJournalListOfEngineers">
-    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingJournalSet" Multiplicity="*" />
+    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingRecordSet" Multiplicity="*" />
     <End Role="ListOfEngineers" Type="MGDBModel.Store.EngineerSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="ListOfEngineers">
@@ -315,7 +318,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SampleMakingJournalCustomersList">
-    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingJournalSet" Multiplicity="*" />
+    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingRecordSet" Multiplicity="*" />
     <End Role="CustomersList" Type="MGDBModel.Store.CustomerSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="CustomersList">
@@ -327,7 +330,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="SampleMakingJournalMVZList">
-    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingJournalSet" Multiplicity="*" />
+    <End Role="SampleMakingJournal" Type="MGDBModel.Store.SampleMakingRecordSet" Multiplicity="*" />
     <End Role="MVZList" Type="MGDBModel.Store.MVZSet" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="MVZList">
@@ -370,10 +373,10 @@
           <EntitySet Name="ResearchSet" EntityType="MGDBModel.Research" />
           <EntitySet Name="EngineerSet" EntityType="MGDBModel.Engineer" />
           <EntitySet Name="CustomerSet" EntityType="MGDBModel.Customer" />
-          <EntitySet Name="SamplePrepJournalSet" EntityType="MGDBModel.SamplePrepJournal" />
-          <EntitySet Name="SampleMakingJournalSet" EntityType="MGDBModel.SampleMakingJournal" />
+          <EntitySet Name="SamplePrepRecordSet" EntityType="MGDBModel.SamplePrepRecord" />
+          <EntitySet Name="SampleMakingRecordSet" EntityType="MGDBModel.SampleMakingRecord" />
           <EntitySet Name="MVZSet" EntityType="MGDBModel.MVZ" />
-          <EntitySet Name="ChemistryJournalSet" EntityType="MGDBModel.ChemistryJournal" />
+          <EntitySet Name="ChemistryRecordSet" EntityType="MGDBModel.ChemistryRecord" />
           <EntitySet Name="TypeOfResearchSet" EntityType="MGDBModel.TypeOfResearch" />
           <EntitySet Name="ResearchDataSet" EntityType="MGDBModel.ResearchData" />
           <AssociationSet Name="MainJournalListOfEngineers" Association="MGDBModel.MainJournalListOfEngineers">
@@ -393,39 +396,39 @@
             <End Role="TypeOfResearch" EntitySet="TypeOfResearchSet" />
           </AssociationSet>
           <AssociationSet Name="ChemistryJournalListOfEngineers" Association="MGDBModel.ChemistryJournalListOfEngineers">
-            <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+            <End Role="ChemistryJournal" EntitySet="ChemistryRecordSet" />
             <End Role="ListOfEngineers" EntitySet="EngineerSet" />
           </AssociationSet>
           <AssociationSet Name="ChemistryJournalCustomersList" Association="MGDBModel.ChemistryJournalCustomersList">
-            <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+            <End Role="ChemistryJournal" EntitySet="ChemistryRecordSet" />
             <End Role="CustomersList" EntitySet="CustomerSet" />
           </AssociationSet>
           <AssociationSet Name="ChemistryJournalMVZList" Association="MGDBModel.ChemistryJournalMVZList">
-            <End Role="ChemistryJournal" EntitySet="ChemistryJournalSet" />
+            <End Role="ChemistryJournal" EntitySet="ChemistryRecordSet" />
             <End Role="MVZList" EntitySet="MVZSet" />
           </AssociationSet>
           <AssociationSet Name="SamplePrepJournalListOfEngineers" Association="MGDBModel.SamplePrepJournalListOfEngineers">
-            <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+            <End Role="SamplePrepJournal" EntitySet="SamplePrepRecordSet" />
             <End Role="ListOfEngineers" EntitySet="EngineerSet" />
           </AssociationSet>
           <AssociationSet Name="SamplePrepJournalCustomersList" Association="MGDBModel.SamplePrepJournalCustomersList">
-            <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+            <End Role="SamplePrepJournal" EntitySet="SamplePrepRecordSet" />
             <End Role="CustomersList" EntitySet="CustomerSet" />
           </AssociationSet>
           <AssociationSet Name="SamplePrepJournalMVZList" Association="MGDBModel.SamplePrepJournalMVZList">
-            <End Role="SamplePrepJournal" EntitySet="SamplePrepJournalSet" />
+            <End Role="SamplePrepJournal" EntitySet="SamplePrepRecordSet" />
             <End Role="MVZList" EntitySet="MVZSet" />
           </AssociationSet>
           <AssociationSet Name="SampleMakingJournalListOfEngineers" Association="MGDBModel.SampleMakingJournalListOfEngineers">
-            <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+            <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
             <End Role="ListOfEngineers" EntitySet="EngineerSet" />
           </AssociationSet>
           <AssociationSet Name="SampleMakingJournalCustomersList" Association="MGDBModel.SampleMakingJournalCustomersList">
-            <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+            <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
             <End Role="CustomersList" EntitySet="CustomerSet" />
           </AssociationSet>
           <AssociationSet Name="SampleMakingJournalMVZList" Association="MGDBModel.SampleMakingJournalMVZList">
-            <End Role="SampleMakingJournal" EntitySet="SampleMakingJournalSet" />
+            <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
             <End Role="MVZList" EntitySet="MVZSet" />
           </AssociationSet>
           <AssociationSet Name="CustomersListMVZList" Association="MGDBModel.CustomersListMVZList">
@@ -492,11 +495,12 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="MVZList" Relationship="MGDBModel.CustomersListMVZList" FromRole="CustomersList" ToRole="MVZList" />
         </EntityType>
-        <EntityType Name="SamplePrepJournal">
+        <EntityType Name="SamplePrepRecord">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="8" FixedLength="true" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Task" Type="String" Nullable="false" />
           <NavigationProperty Name="Engineer" Relationship="MGDBModel.SamplePrepJournalListOfEngineers" FromRole="SamplePrepJournal" ToRole="ListOfEngineers" />
@@ -506,13 +510,14 @@
           <NavigationProperty Name="MVZ" Relationship="MGDBModel.SamplePrepJournalMVZList" FromRole="SamplePrepJournal" ToRole="MVZList" />
           <Property Name="MVZListId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="SampleMakingJournal">
+        <EntityType Name="SampleMakingRecord">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="8" FixedLength="true" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
-          <Property Name="Task" Type="String" Nullable="false" />
+          <Property Name="Task" Type="String" Nullable="false" MaxLength="50" />
           <NavigationProperty Name="Engineer" Relationship="MGDBModel.SampleMakingJournalListOfEngineers" FromRole="SampleMakingJournal" ToRole="ListOfEngineers" />
           <Property Name="ListOfEngineersId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="MGDBModel.SampleMakingJournalCustomersList" FromRole="SampleMakingJournal" ToRole="CustomersList" />
@@ -528,11 +533,12 @@
           <Property Name="Text" Type="String" Nullable="false" MaxLength="8" FixedLength="true" />
           <Property Name="CustomersListId" Type="Int32" Nullable="false" />
         </EntityType>
-        <EntityType Name="ChemistryJournal">
+        <EntityType Name="ChemistryRecord">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="8" FixedLength="true" />
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" />
           <Property Name="Steel" Type="String" Nullable="false" />
@@ -617,7 +623,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ChemistryJournalListOfEngineers">
-          <End Type="MGDBModel.ChemistryJournal" Role="ChemistryJournal" Multiplicity="*" />
+          <End Type="MGDBModel.ChemistryRecord" Role="ChemistryJournal" Multiplicity="*" />
           <End Type="MGDBModel.Engineer" Role="ListOfEngineers" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="ListOfEngineers">
@@ -629,7 +635,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ChemistryJournalCustomersList">
-          <End Type="MGDBModel.ChemistryJournal" Role="ChemistryJournal" Multiplicity="*" />
+          <End Type="MGDBModel.ChemistryRecord" Role="ChemistryJournal" Multiplicity="*" />
           <End Type="MGDBModel.Customer" Role="CustomersList" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="CustomersList">
@@ -641,7 +647,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ChemistryJournalMVZList">
-          <End Type="MGDBModel.ChemistryJournal" Role="ChemistryJournal" Multiplicity="*" />
+          <End Type="MGDBModel.ChemistryRecord" Role="ChemistryJournal" Multiplicity="*" />
           <End Type="MGDBModel.MVZ" Role="MVZList" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="MVZList">
@@ -653,7 +659,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SamplePrepJournalListOfEngineers">
-          <End Type="MGDBModel.SamplePrepJournal" Role="SamplePrepJournal" Multiplicity="*" />
+          <End Type="MGDBModel.SamplePrepRecord" Role="SamplePrepJournal" Multiplicity="*" />
           <End Type="MGDBModel.Engineer" Role="ListOfEngineers" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="ListOfEngineers">
@@ -665,7 +671,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SamplePrepJournalCustomersList">
-          <End Type="MGDBModel.SamplePrepJournal" Role="SamplePrepJournal" Multiplicity="*" />
+          <End Type="MGDBModel.SamplePrepRecord" Role="SamplePrepJournal" Multiplicity="*" />
           <End Type="MGDBModel.Customer" Role="CustomersList" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="CustomersList">
@@ -677,7 +683,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SamplePrepJournalMVZList">
-          <End Type="MGDBModel.SamplePrepJournal" Role="SamplePrepJournal" Multiplicity="*" />
+          <End Type="MGDBModel.SamplePrepRecord" Role="SamplePrepJournal" Multiplicity="*" />
           <End Type="MGDBModel.MVZ" Role="MVZList" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="MVZList">
@@ -689,7 +695,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SampleMakingJournalListOfEngineers">
-          <End Type="MGDBModel.SampleMakingJournal" Role="SampleMakingJournal" Multiplicity="*" />
+          <End Type="MGDBModel.SampleMakingRecord" Role="SampleMakingJournal" Multiplicity="*" />
           <End Type="MGDBModel.Engineer" Role="ListOfEngineers" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="ListOfEngineers">
@@ -701,7 +707,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SampleMakingJournalCustomersList">
-          <End Type="MGDBModel.SampleMakingJournal" Role="SampleMakingJournal" Multiplicity="*" />
+          <End Type="MGDBModel.SampleMakingRecord" Role="SampleMakingJournal" Multiplicity="*" />
           <End Type="MGDBModel.Customer" Role="CustomersList" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="CustomersList">
@@ -713,7 +719,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="SampleMakingJournalMVZList">
-          <End Type="MGDBModel.SampleMakingJournal" Role="SampleMakingJournal" Multiplicity="*" />
+          <End Type="MGDBModel.SampleMakingRecord" Role="SampleMakingJournal" Multiplicity="*" />
           <End Type="MGDBModel.MVZ" Role="MVZList" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="MVZList">
@@ -787,10 +793,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SamplePrepJournalSet">
-      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.SamplePrepJournal)">
-        <MappingFragment StoreEntitySet="SamplePrepJournalSet">
+    <EntitySetMapping Name="SamplePrepRecordSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.SamplePrepRecord)">
+        <MappingFragment StoreEntitySet="SamplePrepRecordSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Task" ColumnName="Task" />
           <ScalarProperty Name="ListOfEngineersId" ColumnName="ListOfEngineersId" />
@@ -799,10 +806,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SampleMakingJournalSet">
-      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.SampleMakingJournal)">
-        <MappingFragment StoreEntitySet="SampleMakingJournalSet">
+    <EntitySetMapping Name="SampleMakingRecordSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.SampleMakingRecord)">
+        <MappingFragment StoreEntitySet="SampleMakingRecordSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Task" ColumnName="Task" />
           <ScalarProperty Name="ListOfEngineersId" ColumnName="ListOfEngineersId" />
@@ -820,10 +828,11 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ChemistryJournalSet">
-      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.ChemistryJournal)">
-        <MappingFragment StoreEntitySet="ChemistryJournalSet">
+    <EntitySetMapping Name="ChemistryRecordSet">
+      <EntityTypeMapping TypeName="IsTypeOf(MGDBModel.ChemistryRecord)">
+        <MappingFragment StoreEntitySet="ChemistryRecordSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Steel" ColumnName="Steel" />

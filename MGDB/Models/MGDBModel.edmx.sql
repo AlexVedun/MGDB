@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/15/2018 19:43:52
+-- Date Created: 08/15/2018 22:40:00
 -- Generated from EDMX file: C:\Users\Alex\SkyDrive\ШАГ\Программирование\Курсовые проекты\C#\MGDB\MGDB\Models\MGDBModel.edmx
 -- --------------------------------------------------
 
@@ -17,9 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_MainJournalDataJournal]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ResearchSet] DROP CONSTRAINT [FK_MainJournalDataJournal];
-GO
 IF OBJECT_ID(N'[dbo].[FK_MainJournalListOfEngineers]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ResearchSet] DROP CONSTRAINT [FK_MainJournalListOfEngineers];
 GO
@@ -60,7 +57,10 @@ IF OBJECT_ID(N'[dbo].[FK_SampleMakingJournalMVZList]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SampleMakingJournalSet] DROP CONSTRAINT [FK_SampleMakingJournalMVZList];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CustomersListMVZList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[MVZListSet] DROP CONSTRAINT [FK_CustomersListMVZList];
+    ALTER TABLE [dbo].[MVZSet] DROP CONSTRAINT [FK_CustomersListMVZList];
+GO
+IF OBJECT_ID(N'[dbo].[FK_ResearchResearchData]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ResearchSet] DROP CONSTRAINT [FK_ResearchResearchData];
 GO
 
 -- --------------------------------------------------
@@ -70,11 +70,11 @@ GO
 IF OBJECT_ID(N'[dbo].[ResearchSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ResearchSet];
 GO
-IF OBJECT_ID(N'[dbo].[ListOfEngineersSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ListOfEngineersSet];
+IF OBJECT_ID(N'[dbo].[EngineerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[EngineerSet];
 GO
-IF OBJECT_ID(N'[dbo].[CustomersListSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CustomersListSet];
+IF OBJECT_ID(N'[dbo].[CustomerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CustomerSet];
 GO
 IF OBJECT_ID(N'[dbo].[SamplePrepJournalSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SamplePrepJournalSet];
@@ -82,8 +82,8 @@ GO
 IF OBJECT_ID(N'[dbo].[SampleMakingJournalSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SampleMakingJournalSet];
 GO
-IF OBJECT_ID(N'[dbo].[MVZListSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[MVZListSet];
+IF OBJECT_ID(N'[dbo].[MVZSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[MVZSet];
 GO
 IF OBJECT_ID(N'[dbo].[ChemistryJournalSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ChemistryJournalSet];
@@ -138,9 +138,10 @@ CREATE TABLE [dbo].[CustomerSet] (
 );
 GO
 
--- Creating table 'SamplePrepJournalSet'
-CREATE TABLE [dbo].[SamplePrepJournalSet] (
+-- Creating table 'SamplePrepRecordSet'
+CREATE TABLE [dbo].[SamplePrepRecordSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Number] nchar(8)  NOT NULL,
     [Date] datetime  NOT NULL,
     [Task] nvarchar(max)  NOT NULL,
     [ListOfEngineersId] int  NOT NULL,
@@ -149,11 +150,12 @@ CREATE TABLE [dbo].[SamplePrepJournalSet] (
 );
 GO
 
--- Creating table 'SampleMakingJournalSet'
-CREATE TABLE [dbo].[SampleMakingJournalSet] (
+-- Creating table 'SampleMakingRecordSet'
+CREATE TABLE [dbo].[SampleMakingRecordSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Number] nchar(8)  NOT NULL,
     [Date] datetime  NOT NULL,
-    [Task] nvarchar(max)  NOT NULL,
+    [Task] nvarchar(50)  NOT NULL,
     [ListOfEngineersId] int  NOT NULL,
     [CustomersListId] int  NOT NULL,
     [MVZListId] int  NOT NULL
@@ -168,9 +170,10 @@ CREATE TABLE [dbo].[MVZSet] (
 );
 GO
 
--- Creating table 'ChemistryJournalSet'
-CREATE TABLE [dbo].[ChemistryJournalSet] (
+-- Creating table 'ChemistryRecordSet'
+CREATE TABLE [dbo].[ChemistryRecordSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Number] nchar(8)  NOT NULL,
     [Date] datetime  NOT NULL,
     [Description] nvarchar(max)  NOT NULL,
     [Steel] nvarchar(max)  NOT NULL,
@@ -227,15 +230,15 @@ ADD CONSTRAINT [PK_CustomerSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'SamplePrepJournalSet'
-ALTER TABLE [dbo].[SamplePrepJournalSet]
-ADD CONSTRAINT [PK_SamplePrepJournalSet]
+-- Creating primary key on [Id] in table 'SamplePrepRecordSet'
+ALTER TABLE [dbo].[SamplePrepRecordSet]
+ADD CONSTRAINT [PK_SamplePrepRecordSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'SampleMakingJournalSet'
-ALTER TABLE [dbo].[SampleMakingJournalSet]
-ADD CONSTRAINT [PK_SampleMakingJournalSet]
+-- Creating primary key on [Id] in table 'SampleMakingRecordSet'
+ALTER TABLE [dbo].[SampleMakingRecordSet]
+ADD CONSTRAINT [PK_SampleMakingRecordSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -245,9 +248,9 @@ ADD CONSTRAINT [PK_MVZSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'ChemistryJournalSet'
-ALTER TABLE [dbo].[ChemistryJournalSet]
-ADD CONSTRAINT [PK_ChemistryJournalSet]
+-- Creating primary key on [Id] in table 'ChemistryRecordSet'
+ALTER TABLE [dbo].[ChemistryRecordSet]
+ADD CONSTRAINT [PK_ChemistryRecordSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -327,8 +330,8 @@ ON [dbo].[ResearchSet]
     ([TypeOfResearchId]);
 GO
 
--- Creating foreign key on [ListOfEngineersId] in table 'ChemistryJournalSet'
-ALTER TABLE [dbo].[ChemistryJournalSet]
+-- Creating foreign key on [ListOfEngineersId] in table 'ChemistryRecordSet'
+ALTER TABLE [dbo].[ChemistryRecordSet]
 ADD CONSTRAINT [FK_ChemistryJournalListOfEngineers]
     FOREIGN KEY ([ListOfEngineersId])
     REFERENCES [dbo].[EngineerSet]
@@ -338,12 +341,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ChemistryJournalListOfEngineers'
 CREATE INDEX [IX_FK_ChemistryJournalListOfEngineers]
-ON [dbo].[ChemistryJournalSet]
+ON [dbo].[ChemistryRecordSet]
     ([ListOfEngineersId]);
 GO
 
--- Creating foreign key on [CustomersListId] in table 'ChemistryJournalSet'
-ALTER TABLE [dbo].[ChemistryJournalSet]
+-- Creating foreign key on [CustomersListId] in table 'ChemistryRecordSet'
+ALTER TABLE [dbo].[ChemistryRecordSet]
 ADD CONSTRAINT [FK_ChemistryJournalCustomersList]
     FOREIGN KEY ([CustomersListId])
     REFERENCES [dbo].[CustomerSet]
@@ -353,12 +356,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ChemistryJournalCustomersList'
 CREATE INDEX [IX_FK_ChemistryJournalCustomersList]
-ON [dbo].[ChemistryJournalSet]
+ON [dbo].[ChemistryRecordSet]
     ([CustomersListId]);
 GO
 
--- Creating foreign key on [MVZListId] in table 'ChemistryJournalSet'
-ALTER TABLE [dbo].[ChemistryJournalSet]
+-- Creating foreign key on [MVZListId] in table 'ChemistryRecordSet'
+ALTER TABLE [dbo].[ChemistryRecordSet]
 ADD CONSTRAINT [FK_ChemistryJournalMVZList]
     FOREIGN KEY ([MVZListId])
     REFERENCES [dbo].[MVZSet]
@@ -368,12 +371,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_ChemistryJournalMVZList'
 CREATE INDEX [IX_FK_ChemistryJournalMVZList]
-ON [dbo].[ChemistryJournalSet]
+ON [dbo].[ChemistryRecordSet]
     ([MVZListId]);
 GO
 
--- Creating foreign key on [ListOfEngineersId] in table 'SamplePrepJournalSet'
-ALTER TABLE [dbo].[SamplePrepJournalSet]
+-- Creating foreign key on [ListOfEngineersId] in table 'SamplePrepRecordSet'
+ALTER TABLE [dbo].[SamplePrepRecordSet]
 ADD CONSTRAINT [FK_SamplePrepJournalListOfEngineers]
     FOREIGN KEY ([ListOfEngineersId])
     REFERENCES [dbo].[EngineerSet]
@@ -383,12 +386,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SamplePrepJournalListOfEngineers'
 CREATE INDEX [IX_FK_SamplePrepJournalListOfEngineers]
-ON [dbo].[SamplePrepJournalSet]
+ON [dbo].[SamplePrepRecordSet]
     ([ListOfEngineersId]);
 GO
 
--- Creating foreign key on [CustomersListId] in table 'SamplePrepJournalSet'
-ALTER TABLE [dbo].[SamplePrepJournalSet]
+-- Creating foreign key on [CustomersListId] in table 'SamplePrepRecordSet'
+ALTER TABLE [dbo].[SamplePrepRecordSet]
 ADD CONSTRAINT [FK_SamplePrepJournalCustomersList]
     FOREIGN KEY ([CustomersListId])
     REFERENCES [dbo].[CustomerSet]
@@ -398,12 +401,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SamplePrepJournalCustomersList'
 CREATE INDEX [IX_FK_SamplePrepJournalCustomersList]
-ON [dbo].[SamplePrepJournalSet]
+ON [dbo].[SamplePrepRecordSet]
     ([CustomersListId]);
 GO
 
--- Creating foreign key on [MVZListId] in table 'SamplePrepJournalSet'
-ALTER TABLE [dbo].[SamplePrepJournalSet]
+-- Creating foreign key on [MVZListId] in table 'SamplePrepRecordSet'
+ALTER TABLE [dbo].[SamplePrepRecordSet]
 ADD CONSTRAINT [FK_SamplePrepJournalMVZList]
     FOREIGN KEY ([MVZListId])
     REFERENCES [dbo].[MVZSet]
@@ -413,12 +416,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SamplePrepJournalMVZList'
 CREATE INDEX [IX_FK_SamplePrepJournalMVZList]
-ON [dbo].[SamplePrepJournalSet]
+ON [dbo].[SamplePrepRecordSet]
     ([MVZListId]);
 GO
 
--- Creating foreign key on [ListOfEngineersId] in table 'SampleMakingJournalSet'
-ALTER TABLE [dbo].[SampleMakingJournalSet]
+-- Creating foreign key on [ListOfEngineersId] in table 'SampleMakingRecordSet'
+ALTER TABLE [dbo].[SampleMakingRecordSet]
 ADD CONSTRAINT [FK_SampleMakingJournalListOfEngineers]
     FOREIGN KEY ([ListOfEngineersId])
     REFERENCES [dbo].[EngineerSet]
@@ -428,12 +431,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SampleMakingJournalListOfEngineers'
 CREATE INDEX [IX_FK_SampleMakingJournalListOfEngineers]
-ON [dbo].[SampleMakingJournalSet]
+ON [dbo].[SampleMakingRecordSet]
     ([ListOfEngineersId]);
 GO
 
--- Creating foreign key on [CustomersListId] in table 'SampleMakingJournalSet'
-ALTER TABLE [dbo].[SampleMakingJournalSet]
+-- Creating foreign key on [CustomersListId] in table 'SampleMakingRecordSet'
+ALTER TABLE [dbo].[SampleMakingRecordSet]
 ADD CONSTRAINT [FK_SampleMakingJournalCustomersList]
     FOREIGN KEY ([CustomersListId])
     REFERENCES [dbo].[CustomerSet]
@@ -443,12 +446,12 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SampleMakingJournalCustomersList'
 CREATE INDEX [IX_FK_SampleMakingJournalCustomersList]
-ON [dbo].[SampleMakingJournalSet]
+ON [dbo].[SampleMakingRecordSet]
     ([CustomersListId]);
 GO
 
--- Creating foreign key on [MVZListId] in table 'SampleMakingJournalSet'
-ALTER TABLE [dbo].[SampleMakingJournalSet]
+-- Creating foreign key on [MVZListId] in table 'SampleMakingRecordSet'
+ALTER TABLE [dbo].[SampleMakingRecordSet]
 ADD CONSTRAINT [FK_SampleMakingJournalMVZList]
     FOREIGN KEY ([MVZListId])
     REFERENCES [dbo].[MVZSet]
@@ -458,7 +461,7 @@ GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_SampleMakingJournalMVZList'
 CREATE INDEX [IX_FK_SampleMakingJournalMVZList]
-ON [dbo].[SampleMakingJournalSet]
+ON [dbo].[SampleMakingRecordSet]
     ([MVZListId]);
 GO
 

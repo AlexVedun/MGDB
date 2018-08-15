@@ -28,10 +28,10 @@ namespace MGDB.Models
         public virtual DbSet<Research> ResearchSet { get; set; }
         public virtual DbSet<Engineer> EngineerSet { get; set; }
         public virtual DbSet<Customer> CustomerSet { get; set; }
-        public virtual DbSet<SamplePrepJournal> SamplePrepJournalSet { get; set; }
-        public virtual DbSet<SampleMakingJournal> SampleMakingJournalSet { get; set; }
+        public virtual DbSet<SamplePrepRecord> SamplePrepRecordSet { get; set; }
+        public virtual DbSet<SampleMakingRecord> SampleMakingRecordSet { get; set; }
         public virtual DbSet<MVZ> MVZSet { get; set; }
-        public virtual DbSet<ChemistryJournal> ChemistryJournalSet { get; set; }
+        public virtual DbSet<ChemistryRecord> ChemistryRecordSet { get; set; }
         public virtual DbSet<TypeOfResearch> TypeOfResearchSet { get; set; }
         public virtual DbSet<ResearchData> ResearchDataSet { get; set; }
     }
