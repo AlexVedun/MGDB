@@ -1,0 +1,42 @@
+﻿<catel:UserControl x:Class="MGDB.Views.EngineersEditorView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:catel="http://schemas.catelproject.com"
+                   Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox 
+            Grid.Column="0" 
+            Grid.Row="0" 
+            Grid.RowSpan="3" 
+            MinWidth="100"
+            Margin="5"
+            HorizontalAlignment="Stretch" 
+            ItemsSource="{Binding EngineersList}" 
+            DisplayMemberPath="Name"
+            SelectedItem="{Binding SelectedEngineer}">
+        </ListBox>
+        <Label Margin="5" Grid.Row="0" Grid.Column="1" Content="Работник" MinWidth="100" />
+        <TextBox Margin="5" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" MinWidth="100" Text="{Binding EngineerName}" VerticalContentAlignment="Center"></TextBox>
+        <Label Margin="5" Grid.Row="1" Grid.Column="1" Content="Пароль" MinWidth="100" />
+        <TextBox Margin="5" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" MinWidth="100" Text="{Binding EngineerPassword}" VerticalContentAlignment="Center"></TextBox>
+        <Button Margin="5" Grid.Row="2" Grid.Column="1" Content="Добавить" Command="{Binding AddEngineerCommand}" />
+        <Button Margin="5" Grid.Row="2" Grid.Column="2" Content="Изменить" Command="{Binding EditEngineerCommand}"/>
+        <Button Margin="5" Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" Content="Очистить" Command="{Binding ClearTextCommand}" Height="20" />
+    </Grid>
+    
+</catel:UserControl>

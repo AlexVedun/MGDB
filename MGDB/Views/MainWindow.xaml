@@ -29,6 +29,10 @@
             <MenuItem Header="Отчеты">
 
             </MenuItem>
+            <MenuItem Header="Настройки">
+                <MenuItem Header="Список работников группы металловедения" Command="{Binding EditEngineersCommand}" />
+                <MenuItem Header="Список заказчиков" Command="{Binding EditCustomersCommand}" />
+            </MenuItem>
         </Menu>
         <TabControl 
             Grid.Row="1" 

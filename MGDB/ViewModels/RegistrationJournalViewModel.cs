@@ -4,6 +4,7 @@ using MGDB.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,10 +13,17 @@ namespace MGDB
 {
     class RegistrationJournalViewModel : ViewModelBase
     {
+        private MGDBModelContainer db;
+
         public RegistrationJournalViewModel()
         {
-            using (MGDBModelContainer db = new MGDBModelContainer())
-            {
+            db = new MGDBModelContainer();
+            CustomersList = db.CustomerSet.Select(x=>x.Name).ToList();
+            db.ResearchSet.Load();
+            JournalData = db.ResearchSet.Local;
+            //JournalData = (ObservableCollection < Research > )db.ResearchSet.Select(x=> new { x.Number, x.Date, x.Customer, x.MVZ, x.Description, x.NumberOfSamples});
+            //using (MGDBModelContainer db = new MGDBModelContainer())
+            //{
                 //JournalData = new ObservableCollection<MainJournal>();
                 //foreach (var item in db.MainJournalSet.ToList())
                 //{
@@ -56,13 +64,14 @@ namespace MGDB
                 //db.SaveChanges();
                 //MainJournal rec1 = new MainJournal();
                 //rec1.
-                JournalData = db.ResearchSet.Local;
-            }
+                //JournalData = db.ResearchSet.Local;
+            //}
         }
 
         ~RegistrationJournalViewModel()
         {
-
+            db.SaveChanges();
+            db.Dispose();
         }
 
         public ObservableCollection<Research> JournalData
@@ -70,6 +79,14 @@ namespace MGDB
             get { return GetValue<ObservableCollection<Research>>(JournalDataProperty); }
             set { SetValue(JournalDataProperty, value); }
         }
+
+        public List<string> CustomersList
+        {
+            get { return GetValue<List<string>>(CustomersListProperty); }
+            set { SetValue(CustomersListProperty, value); }
+        }
+
+        public static readonly PropertyData CustomersListProperty = RegisterProperty(nameof(CustomersList), typeof(List<string>), null);
 
         public static readonly PropertyData JournalDataProperty = RegisterProperty(nameof(JournalData), typeof(ObservableCollection<Research>), null);
         

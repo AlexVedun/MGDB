@@ -21,8 +21,42 @@
         <!--<Button Width="20" Height="20" Grid.Row="0" Grid.Column="0" Content="{StaticResource CloseTabIcon}"/>-->
         <!--<DataGrid HorizontalAlignment="Left" Height="20" Grid.Row="1" VerticalAlignment="Top" Width="20" ItemsSource="{Binding JournalData}"/>-->
 
-        <DataGrid Grid.Row="0" Grid.Column="0" VerticalAlignment="Stretch" AutoGenerateColumns="True" ItemsSource="{Binding JournalData}">
-
+        <DataGrid 
+            Grid.Row="0" 
+            Grid.Column="0" 
+            VerticalAlignment="Stretch" 
+            AutoGenerateColumns="False" 
+            ItemsSource="{Binding JournalData}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Номер">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Number}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Описание">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=Description}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Заказчик">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=Customer.Name}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="МВЗ">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBox Text="{Binding Path=MVZ.Text}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
 
     </Grid>

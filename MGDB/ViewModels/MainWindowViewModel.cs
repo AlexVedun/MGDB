@@ -11,6 +11,7 @@
     using System.Windows.Controls;
     using System.Windows.Data;
     using System.Windows.Media.Imaging;
+    using System.Linq;
 
     public class MainWindowViewModel : ViewModelBase
     {
@@ -54,9 +55,12 @@
             Grid.SetColumn(contentControl, 0);
             Grid.SetColumnSpan(contentControl, 2);
             Grid.SetRow(contentControl, 1);
+            
 
             //tabItem.Content = contentControl;
             tabItem.Content = grid;
+            //tabItem.HorizontalContentAlignment = HorizontalAlignment.Center;
+            //tabItem.VerticalContentAlignment = VerticalAlignment.Center;
             SelectedTabItem = tabItem;
             return tabItem;
         }
@@ -67,6 +71,8 @@
             ExitCommand = new Command(OnExitCommandExecute);
             RegistrationJournalCommand = new Command(OnRegistrationJournalCommandExecute);
             CloseTabCommand = new Command(OnCloseTabCommandExecute);
+            EditEngineersCommand = new Command(OnEditEngineersCommandExecute);
+            EditCustomersCommand = new Command(OnEditCustomersCommandExecute);
             TabItems = new ObservableCollection<TabItem>();
         }
 
@@ -108,8 +114,17 @@
 
         private void OnRegistrationJournalCommandExecute()
         {
-            RegistrationJournalViewModel tempWindow = new RegistrationJournalViewModel();
-            TabItems.Add(CreateTabItem("Журнал регистрации исследований", tempWindow));
+            TabItem temp = TabItems.Where(x => (string)x.Header == "Журнал регистрации исследований").FirstOrDefault();
+            if (temp == null)
+            {
+                RegistrationJournalViewModel window = new RegistrationJournalViewModel();
+                TabItems.Add(CreateTabItem("Журнал регистрации исследований", window));
+            }
+            else
+            {
+                SelectedTabItem = temp;
+            }
+            
             //windowsList.Add((RegistrationJournalViewModel)tempWindow);
             //var tabItem = new TabItem();
             //tabItem.Header = "Журнал регистрации исследований";
@@ -129,12 +144,45 @@
             //TabItems.Add(tabItem);
         }
 
+        public Command EditEngineersCommand { get; private set; }
+
+        private void OnEditEngineersCommandExecute()
+        {
+            TabItem temp = TabItems.Where(x => (string)x.Header == "Список работников").FirstOrDefault();
+            if (temp == null)
+            {
+                EngineersEditorViewModel window = new EngineersEditorViewModel();
+                TabItems.Add(CreateTabItem("Список работников", window));
+            }
+            else
+            {
+                SelectedTabItem = temp;
+            }
+        }
+
+        public Command EditCustomersCommand { get; private set; }
+
+        private void OnEditCustomersCommandExecute()
+        {
+            TabItem temp = TabItems.Where(x => (string)x.Header == "Заказчики").FirstOrDefault();
+            if (temp == null)
+            {
+                CustomersEditorViewModel window = new CustomersEditorViewModel();
+                TabItems.Add(CreateTabItem("Заказчики", window));
+            }
+            else
+            {
+                SelectedTabItem = temp;
+            }
+        }
+
         public Command CloseTabCommand { get; private set; }
 
         private void OnCloseTabCommandExecute()
         {
             TabItems.Remove(SelectedTabItem);
         }
+
         public Command ExitCommand { get; private set; }
 
         private void OnExitCommandExecute()
@@ -143,10 +191,6 @@
         }
 
         public override string Title { get { return "MGDB"; } }
-
-        // TODO: Register models with the vmpropmodel codesnippet
-        // TODO: Register view model properties with the vmprop or vmpropviewmodeltomodel codesnippets
-        // TODO: Register commands with the vmcommand or vmcommandwithcanexecute codesnippets
 
         protected override async Task InitializeAsync()
         {

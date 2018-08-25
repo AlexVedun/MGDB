@@ -98,6 +98,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\CustomersEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EngineersEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -162,8 +170,16 @@
     <Compile Include="Models\TypeOfResearch.cs">
       <DependentUpon>MGDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\CustomersEditorViewModel.cs" />
+    <Compile Include="ViewModels\EngineersEditorViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\RegistrationJournalViewModel.cs" />
+    <Compile Include="Views\CustomersEditorView.xaml.cs">
+      <DependentUpon>CustomersEditorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EngineersEditorView.xaml.cs">
+      <DependentUpon>EngineersEditorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>

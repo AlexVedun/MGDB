@@ -1,0 +1,90 @@
+﻿<catel:UserControl x:Class="MGDB.Views.CustomersEditorView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:catel="http://schemas.catelproject.com"
+                   Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+
+    <Grid VerticalAlignment="Stretch" MinHeight="300">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox
+            Margin="5"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.RowSpan="4"
+            MinWidth="200"
+            VerticalAlignment="Stretch"
+            ItemsSource="{Binding CustomersList}"
+            DisplayMemberPath="Name"
+            SelectedItem="{Binding SelectedCustomer}" />
+        <Label
+            Margin="5"
+            Grid.Row="0"
+            Grid.Column="1"
+            Content="Название">
+        </Label>
+        <TextBox
+            Margin="5"
+            Grid.Row="0"
+            Grid.Column="2"
+            Text="{Binding CurrentCustomerName}"
+            MinWidth="150">
+        </TextBox>
+        <Label
+            Margin="5"
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.RowSpan="3"
+            Content="МВЗ"
+            VerticalAlignment="Center">
+        </Label>
+        <ListBox
+            Margin="5"
+            Grid.Row="1"
+            Grid.Column="2"
+            Grid.RowSpan="2"
+            VerticalAlignment="Stretch"
+            ItemsSource="{Binding MVZList}"
+            DisplayMemberPath="Text"
+            SelectedItem="{Binding SelectedMVZ}">
+        </ListBox>
+        <TextBox
+            Margin="5"
+            Grid.Row="3"
+            Grid.Column="2"
+            Text="{Binding NewMVZText}"
+            MinWidth="100">
+        </TextBox>
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="3"
+            Grid.RowSpan="2"
+            Orientation="Vertical"
+            VerticalAlignment="Center">
+            <Button Margin="5" Content="Добавить МВЗ" Command="{Binding AddMVZCommand}" />
+            <Button Margin="5" Content="Исправить МВЗ" Command="{Binding EditMVZCommand}" />
+        </StackPanel>
+        <StackPanel
+            Grid.Row="4"
+            Grid.Column="1"
+            Grid.ColumnSpan="3"
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <Button  Margin="5" MinWidth="100" Content="Добавить" Command="{Binding AddCustomerCommand}" />
+            <Button Margin="5" MinWidth="100" Content="Изменить" Command="{Binding EditCustomerCommand}" />
+        </StackPanel>
+    </Grid>
+    
+</catel:UserControl>
