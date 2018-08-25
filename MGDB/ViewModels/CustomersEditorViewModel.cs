@@ -26,13 +26,11 @@ namespace MGDB.ViewModels
 
             AddMVZCommand = new Command(OnAddMVZCommandExecute);
             EditMVZCommand = new Command(OnEditMVZCommandExecute);
-            AddCustomerCommand = new Command(OnAddCustomerCommandExecute);
-            EditCustomerCommand = new Command(OnEditCustomerCommandExecute);
+            AddEditCustomerCommand = new Command(OnAddEditCustomerCommandExecute);
         }
 
         ~CustomersEditorViewModel()
         {
-            //db.SaveChanges();
             db.Dispose();
         }
 
@@ -111,9 +109,8 @@ namespace MGDB.ViewModels
             {
                 newMVZ.Text = NewMVZText;
             }
-            //MVZ newMVZ = new MVZ();
-            //newMVZ.Text = NewMVZText;
             MVZList.Add(newMVZ);
+            NewMVZText = "";
         }
 
         public Command EditMVZCommand { get; private set; }
@@ -121,32 +118,36 @@ namespace MGDB.ViewModels
         private void OnEditMVZCommandExecute()
         {
             SelectedMVZ.Text = NewMVZText;
+            NewMVZText = "";
         }
 
-        public Command AddCustomerCommand { get; private set; }
+        public Command AddEditCustomerCommand { get; private set; }
 
-        private void OnAddCustomerCommandExecute()
+        private void OnAddEditCustomerCommandExecute()
         {
-            Customer customer = new Customer();
-            customer.Name = CurrentCustomerName;
-            customer.MVZList = new ObservableCollection<MVZ>();
-            foreach (var item in MVZList)
+            Customer customer = db.CustomerSet.Where(x => x.Name == CurrentCustomerName).FirstOrDefault() ?? new Customer();
+            if (customer.Name == null)
             {
-                customer.MVZList.Add(item);
+                customer.Name = CurrentCustomerName;
+                customer.MVZList = new ObservableCollection<MVZ>();
+                foreach (var item in MVZList)
+                {
+                    customer.MVZList.Add(item);
+                }
+                CustomersList.Add(customer);
             }
-            CustomersList.Add(customer);
+            else
+            {
+                customer.MVZList.Clear();
+                foreach (var item in MVZList)
+                {
+                    customer.MVZList.Add(item);
+                }
+            }
             db.SaveChanges();
         }
 
-        public Command EditCustomerCommand { get; private set; }
-
-        private void OnEditCustomerCommandExecute()
-        {
-            // TODO: Handle command logic here
-        }
-        #endregion
-
-        
+        #endregion    
 
         #region Other
         public override string Title { get { return ""; } }

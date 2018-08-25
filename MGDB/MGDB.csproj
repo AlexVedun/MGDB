@@ -122,54 +122,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\ChemistryRecord.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Customer.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Engineer.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MGDBModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MGDBModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MGDBModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MGDBModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MGDBModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MVZ.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Research.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ResearchData.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SampleMakingRecord.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\SamplePrepRecord.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\StatusEnum.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TypeOfDefectEnum.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TypeOfResearch.cs">
-      <DependentUpon>MGDBModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Models\ChemistryRecord.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Engineer.cs" />
+    <Compile Include="Models\MGDBModel.Context.cs" />
+    <Compile Include="Models\MVZ.cs" />
+    <Compile Include="Models\Research.cs" />
+    <Compile Include="Models\ResearchData.cs" />
+    <Compile Include="Models\SampleMakingRecord.cs" />
+    <Compile Include="Models\SamplePrepRecord.cs" />
+    <Compile Include="Models\StatusEnum.cs" />
+    <Compile Include="Models\TypeOfDefectEnum.cs" />
+    <Compile Include="Models\TypeOfResearch.cs" />
     <Compile Include="ViewModels\CustomersEditorViewModel.cs" />
     <Compile Include="ViewModels\EngineersEditorViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
@@ -211,13 +175,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <EntityDeploy Include="Models\MGDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MGDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models\MGDBModel.edmx.diagram">
-      <DependentUpon>MGDBModel.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Readme.txt" />
     <None Include="Properties\Settings.settings">
@@ -225,23 +182,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Temp\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Icons\CloseTabIcon.png" />
-    <Content Include="Models\MGDBModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MGDBModel.Context.cs</LastGenOutput>
-      <DependentUpon>MGDBModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\MGDBModel.edmx.sql" />
-    <Content Include="Models\MGDBModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MGDBModel.cs</LastGenOutput>
-      <DependentUpon>MGDBModel.edmx</DependentUpon>
-    </Content>
+    <Content Include="Temp2\MGDBModel.edmx.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
