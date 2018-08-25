@@ -16,6 +16,5 @@ namespace MGDB.Models
     {
         public int Id { get; set; }
         public string Text { get; set; }
-        public int CustomersListId { get; set; }
     }
 }

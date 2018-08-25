@@ -15,6 +15,7 @@
     <EntitySet Name="ChemistryRecordSet" EntityType="MGDBModel.Store.ChemistryRecordSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TypeOfResearchSet" EntityType="MGDBModel.Store.TypeOfResearchSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ResearchDataSet" EntityType="MGDBModel.Store.ResearchDataSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CustomerMVZ" EntityType="MGDBModel.Store.CustomerMVZ" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="MainJournalListOfEngineers" Association="MGDBModel.Store.MainJournalListOfEngineers">
       <End Role="MainJournal" EntitySet="ResearchSet" />
       <End Role="ListOfEngineers" EntitySet="EngineerSet" />
@@ -67,13 +68,17 @@
       <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
       <End Role="MVZList" EntitySet="MVZSet" />
     </AssociationSet>
-    <AssociationSet Name="CustomersListMVZList" Association="MGDBModel.Store.CustomersListMVZList">
-      <End Role="CustomersList" EntitySet="CustomerSet" />
-      <End Role="MVZList" EntitySet="MVZSet" />
-    </AssociationSet>
     <AssociationSet Name="ResearchResearchData" Association="MGDBModel.Store.ResearchResearchData">
       <End Role="Research" EntitySet="ResearchSet" />
       <End Role="ResearchData" EntitySet="ResearchDataSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerMVZ_Customer" Association="MGDBModel.Store.FK_CustomerMVZ_Customer">
+      <End Role="Customer" EntitySet="CustomerSet" />
+      <End Role="CustomerMVZ" EntitySet="CustomerMVZ" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerMVZ_MVZ" Association="MGDBModel.Store.FK_CustomerMVZ_MVZ">
+      <End Role="MVZ" EntitySet="MVZSet" />
+      <End Role="CustomerMVZ" EntitySet="CustomerMVZ" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="ResearchSet">
@@ -145,7 +150,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Text" Type="nchar" Nullable="false" MaxLength="8" />
-    <Property Name="CustomersListId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="ChemistryRecordSet">
     <Key>
@@ -184,6 +188,14 @@
     <Property Name="TypeOfTest" Type="nvarchar(max)" Nullable="true" />
     <Property Name="Requirements" Type="nvarchar(max)" Nullable="true" />
     <Property Name="ResultsOfTest" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="CustomerMVZ">
+    <Key>
+      <PropertyRef Name="CustomerMVZ_MVZ_Id" />
+      <PropertyRef Name="MVZList_Id" />
+    </Key>
+    <Property Name="CustomerMVZ_MVZ_Id" Type="int" Nullable="false" />
+    <Property Name="MVZList_Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="MainJournalListOfEngineers">
     <End Role="MainJournal" Type="MGDBModel.Store.ResearchSet" Multiplicity="*" />
@@ -341,18 +353,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CustomersListMVZList">
-    <End Role="CustomersList" Type="MGDBModel.Store.CustomerSet" Multiplicity="1" />
-    <End Role="MVZList" Type="MGDBModel.Store.MVZSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CustomersList">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="MVZList">
-        <PropertyRef Name="CustomersListId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="ResearchResearchData">
     <End Role="Research" Type="MGDBModel.Store.ResearchSet" Multiplicity="*" />
     <End Role="ResearchData" Type="MGDBModel.Store.ResearchDataSet" Multiplicity="1" />
@@ -362,6 +362,30 @@
       </Principal>
       <Dependent Role="Research">
         <PropertyRef Name="ResearchData_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerMVZ_Customer">
+    <End Role="Customer" Type="MGDBModel.Store.CustomerSet" Multiplicity="1" />
+    <End Role="CustomerMVZ" Type="MGDBModel.Store.CustomerMVZ" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerMVZ">
+        <PropertyRef Name="CustomerMVZ_MVZ_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerMVZ_MVZ">
+    <End Role="CustomerMVZ" Type="MGDBModel.Store.CustomerMVZ" Multiplicity="*" />
+    <End Role="MVZ" Type="MGDBModel.Store.MVZSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="MVZ">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CustomerMVZ">
+        <PropertyRef Name="MVZList_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -431,13 +455,13 @@
             <End Role="SampleMakingJournal" EntitySet="SampleMakingRecordSet" />
             <End Role="MVZList" EntitySet="MVZSet" />
           </AssociationSet>
-          <AssociationSet Name="CustomersListMVZList" Association="MGDBModel.CustomersListMVZList">
-            <End Role="CustomersList" EntitySet="CustomerSet" />
-            <End Role="MVZList" EntitySet="MVZSet" />
-          </AssociationSet>
           <AssociationSet Name="ResearchResearchData" Association="MGDBModel.ResearchResearchData">
             <End Role="Research" EntitySet="ResearchSet" />
             <End Role="ResearchData" EntitySet="ResearchDataSet" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerMVZ" Association="MGDBModel.CustomerMVZ">
+            <End Role="Customer" EntitySet="CustomerSet" />
+            <End Role="MVZ" EntitySet="MVZSet" />
           </AssociationSet>
         </EntityContainer>
         <EnumType Name="StatusEnum">
@@ -493,7 +517,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="MVZList" Relationship="MGDBModel.CustomersListMVZList" FromRole="CustomersList" ToRole="MVZList" />
+          <NavigationProperty Name="MVZList" Relationship="MGDBModel.CustomerMVZ" FromRole="Customer" ToRole="MVZ" />
         </EntityType>
         <EntityType Name="SamplePrepRecord">
           <Key>
@@ -531,7 +555,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Text" Type="String" Nullable="false" MaxLength="8" FixedLength="true" />
-          <Property Name="CustomersListId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="ChemistryRecord">
           <Key>
@@ -730,21 +753,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CustomersListMVZList">
-          <End Type="MGDBModel.Customer" Role="CustomersList" Multiplicity="1" />
-          <End Type="MGDBModel.MVZ" Role="MVZList" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomersList">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="MVZList">
-              <PropertyRef Name="CustomersListId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ResearchResearchData">
           <End Type="MGDBModel.Research" Role="Research" Multiplicity="1" />
           <End Type="MGDBModel.ResearchData" Role="ResearchData" Multiplicity="1" />
+        </Association>
+        <Association Name="CustomerMVZ">
+          <End Type="MGDBModel.Customer" Role="Customer" Multiplicity="*" />
+          <End Type="MGDBModel.MVZ" Role="MVZ" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -824,7 +839,6 @@
         <MappingFragment StoreEntitySet="MVZSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Text" ColumnName="Text" />
-          <ScalarProperty Name="CustomersListId" ColumnName="CustomersListId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -875,6 +889,14 @@
       </EndProperty>
       <EndProperty Name="Research">
         <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CustomerMVZ" TypeName="MGDBModel.CustomerMVZ" StoreEntitySet="CustomerMVZ">
+      <EndProperty Name="Customer">
+        <ScalarProperty Name="Id" ColumnName="CustomerMVZ_MVZ_Id" />
+      </EndProperty>
+      <EndProperty Name="MVZ">
+        <ScalarProperty Name="Id" ColumnName="MVZList_Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

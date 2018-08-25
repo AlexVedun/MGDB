@@ -20,6 +20,7 @@ namespace MGDB.ViewModels
         {
             db = new MGDBModelContainer();
             db.CustomerSet.Load();
+            db.MVZSet.Load();
             CustomersList = db.CustomerSet.Local;
             MVZList = new ObservableCollection<MVZ>();
 
@@ -31,7 +32,7 @@ namespace MGDB.ViewModels
 
         ~CustomersEditorViewModel()
         {
-            db.SaveChanges();
+            //db.SaveChanges();
             db.Dispose();
         }
 
@@ -78,18 +79,6 @@ namespace MGDB.ViewModels
 
         public static readonly PropertyData MVZListProperty = RegisterProperty(nameof(MVZList), typeof(ObservableCollection<MVZ>), null);
 
-        //public MVZ SelectedMVZ
-        //{
-        //    get { return GetValue<MVZ>(SelectedMVZProperty); }
-        //    set
-        //    {
-        //        SetValue(SelectedMVZProperty, value);
-        //        NewMVZText = value.Text;
-        //    }
-        //}
-
-        //public static readonly PropertyData SelectedMVZProperty = RegisterProperty(nameof(SelectedMVZ), typeof(MVZ), null);
-
         public MVZ SelectedMVZ
         {
             get { return GetValue<MVZ>(SelectedMVZProperty); }
@@ -100,12 +89,7 @@ namespace MGDB.ViewModels
             }
         }
 
-        public static readonly PropertyData SelectedMVZProperty = RegisterProperty(nameof(SelectedMVZ), typeof(MVZ), null, (sender, e) => ((CustomersEditorViewModel)sender).OnSelectedMVZChanged());
-
-        private void OnSelectedMVZChanged()
-        {
-            // TODO: Implement logic
-        }
+        public static readonly PropertyData SelectedMVZProperty = RegisterProperty(nameof(SelectedMVZ), typeof(MVZ), null);
 
         public string NewMVZText
         {
@@ -122,8 +106,13 @@ namespace MGDB.ViewModels
 
         private void OnAddMVZCommandExecute()
         {
-            MVZ newMVZ = new MVZ();
-            newMVZ.Text = NewMVZText;
+            MVZ newMVZ = db.MVZSet.Where(x => x.Text == NewMVZText).FirstOrDefault() ?? new MVZ();
+            if (newMVZ.Text == null)
+            {
+                newMVZ.Text = NewMVZText;
+            }
+            //MVZ newMVZ = new MVZ();
+            //newMVZ.Text = NewMVZText;
             MVZList.Add(newMVZ);
         }
 

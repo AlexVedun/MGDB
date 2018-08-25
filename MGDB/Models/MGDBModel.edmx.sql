@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 08/15/2018 22:40:00
+-- Date Created: 08/25/2018 16:54:22
 -- Generated from EDMX file: C:\Users\Alex\SkyDrive\ШАГ\Программирование\Курсовые проекты\C#\MGDB\MGDB\Models\MGDBModel.edmx
 -- --------------------------------------------------
 
@@ -30,31 +30,31 @@ IF OBJECT_ID(N'[dbo].[FK_ResearchTypeOfResearch]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ResearchSet] DROP CONSTRAINT [FK_ResearchTypeOfResearch];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ChemistryJournalListOfEngineers]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ChemistryJournalSet] DROP CONSTRAINT [FK_ChemistryJournalListOfEngineers];
+    ALTER TABLE [dbo].[ChemistryRecordSet] DROP CONSTRAINT [FK_ChemistryJournalListOfEngineers];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ChemistryJournalCustomersList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ChemistryJournalSet] DROP CONSTRAINT [FK_ChemistryJournalCustomersList];
+    ALTER TABLE [dbo].[ChemistryRecordSet] DROP CONSTRAINT [FK_ChemistryJournalCustomersList];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ChemistryJournalMVZList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ChemistryJournalSet] DROP CONSTRAINT [FK_ChemistryJournalMVZList];
+    ALTER TABLE [dbo].[ChemistryRecordSet] DROP CONSTRAINT [FK_ChemistryJournalMVZList];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SamplePrepJournalListOfEngineers]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SamplePrepJournalSet] DROP CONSTRAINT [FK_SamplePrepJournalListOfEngineers];
+    ALTER TABLE [dbo].[SamplePrepRecordSet] DROP CONSTRAINT [FK_SamplePrepJournalListOfEngineers];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SamplePrepJournalCustomersList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SamplePrepJournalSet] DROP CONSTRAINT [FK_SamplePrepJournalCustomersList];
+    ALTER TABLE [dbo].[SamplePrepRecordSet] DROP CONSTRAINT [FK_SamplePrepJournalCustomersList];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SamplePrepJournalMVZList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SamplePrepJournalSet] DROP CONSTRAINT [FK_SamplePrepJournalMVZList];
+    ALTER TABLE [dbo].[SamplePrepRecordSet] DROP CONSTRAINT [FK_SamplePrepJournalMVZList];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SampleMakingJournalListOfEngineers]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SampleMakingJournalSet] DROP CONSTRAINT [FK_SampleMakingJournalListOfEngineers];
+    ALTER TABLE [dbo].[SampleMakingRecordSet] DROP CONSTRAINT [FK_SampleMakingJournalListOfEngineers];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SampleMakingJournalCustomersList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SampleMakingJournalSet] DROP CONSTRAINT [FK_SampleMakingJournalCustomersList];
+    ALTER TABLE [dbo].[SampleMakingRecordSet] DROP CONSTRAINT [FK_SampleMakingJournalCustomersList];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SampleMakingJournalMVZList]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[SampleMakingJournalSet] DROP CONSTRAINT [FK_SampleMakingJournalMVZList];
+    ALTER TABLE [dbo].[SampleMakingRecordSet] DROP CONSTRAINT [FK_SampleMakingJournalMVZList];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CustomersListMVZList]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[MVZSet] DROP CONSTRAINT [FK_CustomersListMVZList];
@@ -76,17 +76,17 @@ GO
 IF OBJECT_ID(N'[dbo].[CustomerSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CustomerSet];
 GO
-IF OBJECT_ID(N'[dbo].[SamplePrepJournalSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SamplePrepJournalSet];
+IF OBJECT_ID(N'[dbo].[SamplePrepRecordSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SamplePrepRecordSet];
 GO
-IF OBJECT_ID(N'[dbo].[SampleMakingJournalSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SampleMakingJournalSet];
+IF OBJECT_ID(N'[dbo].[SampleMakingRecordSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SampleMakingRecordSet];
 GO
 IF OBJECT_ID(N'[dbo].[MVZSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[MVZSet];
 GO
-IF OBJECT_ID(N'[dbo].[ChemistryJournalSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[ChemistryJournalSet];
+IF OBJECT_ID(N'[dbo].[ChemistryRecordSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ChemistryRecordSet];
 GO
 IF OBJECT_ID(N'[dbo].[TypeOfResearchSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TypeOfResearchSet];
@@ -165,8 +165,7 @@ GO
 -- Creating table 'MVZSet'
 CREATE TABLE [dbo].[MVZSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [Text] nchar(8)  NOT NULL,
-    [CustomersListId] int  NOT NULL
+    [Text] nchar(8)  NOT NULL
 );
 GO
 
@@ -205,6 +204,13 @@ CREATE TABLE [dbo].[ResearchDataSet] (
     [TypeOfTest] nvarchar(max)  NULL,
     [Requirements] nvarchar(max)  NULL,
     [ResultsOfTest] nvarchar(max)  NULL
+);
+GO
+
+-- Creating table 'CustomerMVZ'
+CREATE TABLE [dbo].[CustomerMVZ] (
+    [CustomerMVZ_MVZ_Id] int  NOT NULL,
+    [MVZList_Id] int  NOT NULL
 );
 GO
 
@@ -264,6 +270,12 @@ GO
 ALTER TABLE [dbo].[ResearchDataSet]
 ADD CONSTRAINT [PK_ResearchDataSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [CustomerMVZ_MVZ_Id], [MVZList_Id] in table 'CustomerMVZ'
+ALTER TABLE [dbo].[CustomerMVZ]
+ADD CONSTRAINT [PK_CustomerMVZ]
+    PRIMARY KEY CLUSTERED ([CustomerMVZ_MVZ_Id], [MVZList_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -465,21 +477,6 @@ ON [dbo].[SampleMakingRecordSet]
     ([MVZListId]);
 GO
 
--- Creating foreign key on [CustomersListId] in table 'MVZSet'
-ALTER TABLE [dbo].[MVZSet]
-ADD CONSTRAINT [FK_CustomersListMVZList]
-    FOREIGN KEY ([CustomersListId])
-    REFERENCES [dbo].[CustomerSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CustomersListMVZList'
-CREATE INDEX [IX_FK_CustomersListMVZList]
-ON [dbo].[MVZSet]
-    ([CustomersListId]);
-GO
-
 -- Creating foreign key on [ResearchData_Id] in table 'ResearchSet'
 ALTER TABLE [dbo].[ResearchSet]
 ADD CONSTRAINT [FK_ResearchResearchData]
@@ -493,6 +490,30 @@ GO
 CREATE INDEX [IX_FK_ResearchResearchData]
 ON [dbo].[ResearchSet]
     ([ResearchData_Id]);
+GO
+
+-- Creating foreign key on [CustomerMVZ_MVZ_Id] in table 'CustomerMVZ'
+ALTER TABLE [dbo].[CustomerMVZ]
+ADD CONSTRAINT [FK_CustomerMVZ_Customer]
+    FOREIGN KEY ([CustomerMVZ_MVZ_Id])
+    REFERENCES [dbo].[CustomerSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [MVZList_Id] in table 'CustomerMVZ'
+ALTER TABLE [dbo].[CustomerMVZ]
+ADD CONSTRAINT [FK_CustomerMVZ_MVZ]
+    FOREIGN KEY ([MVZList_Id])
+    REFERENCES [dbo].[MVZSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CustomerMVZ_MVZ'
+CREATE INDEX [IX_FK_CustomerMVZ_MVZ]
+ON [dbo].[CustomerMVZ]
+    ([MVZList_Id]);
 GO
 
 -- --------------------------------------------------

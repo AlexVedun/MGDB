@@ -27,8 +27,8 @@
         <AssociationConnector Association="MGDBModel.SampleMakingJournalListOfEngineers" />
         <AssociationConnector Association="MGDBModel.SampleMakingJournalCustomersList" />
         <AssociationConnector Association="MGDBModel.SampleMakingJournalMVZList" />
-        <AssociationConnector Association="MGDBModel.CustomersListMVZList" />
         <AssociationConnector Association="MGDBModel.ResearchResearchData" />
+        <AssociationConnector Association="MGDBModel.CustomerMVZ" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
