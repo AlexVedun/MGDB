@@ -98,6 +98,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModels\ChemistryViewModel.cs" />
+    <Compile Include="ViewModels\SampleMakingViewModel.cs" />
+    <Compile Include="ViewModels\SamplePrepViewModel.cs" />
+    <Compile Include="Views\ChemistryView.xaml.cs">
+      <DependentUpon>ChemistryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SampleMakingView.xaml.cs">
+      <DependentUpon>SampleMakingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SamplePrepView.xaml.cs">
+      <DependentUpon>SamplePrepView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\ChemistryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CustomersEditorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +171,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\SampleMakingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SamplePrepView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

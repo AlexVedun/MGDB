@@ -70,7 +70,7 @@ namespace MGDB
 
         ~RegistrationJournalViewModel()
         {
-            db.SaveChanges();
+            //db.SaveChanges();
             db.Dispose();
         }
 

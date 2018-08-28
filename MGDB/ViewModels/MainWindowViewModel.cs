@@ -13,15 +13,53 @@
     using System.Windows.Media.Imaging;
     using System.Linq;
 
+    class BoolToVisibleOrHidden : System.Windows.Data.IValueConverter
+    {
+        #region Constructors
+        /// <summary>
+        /// The default constructor
+        /// </summary>
+        public BoolToVisibleOrHidden() { }
+        #endregion
+
+        #region IValueConverter Members
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            bool bValue = (bool)value;
+            if (bValue)
+                return Visibility.Visible;
+            else
+                return Visibility.Hidden;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Visibility visibility = (Visibility)value;
+
+            if (visibility == Visibility.Visible)
+                return true;
+            else
+                return false;
+        }
+        #endregion
+    }
+
     public class MainWindowViewModel : ViewModelBase
     {
+        private const string registrationJournal = "Журнал регистрации исследований";
+        private const string engineersEditor = "Список работников";
+        private const string customersEditor = "Заказчики";
+
         private List<IViewModel> windowsList = new List<IViewModel>();
+        private List<string> tabList = new List<string>();
         //private RegistrationJournalViewModel regJournalWindow = new RegistrationJournalViewModel();
+
+        #region Private Methods
 
         private TabItem CreateTabItem(string _title, IViewModel _view)
         {
             var tabItem = new TabItem();
-            tabItem.Header = _title;
+            //tabItem.Header = _title;
             ContentControl contentControl = new ContentControl();
             contentControl.VerticalAlignment = System.Windows.VerticalAlignment.Stretch;
             contentControl.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -29,10 +67,10 @@
             b.Source = _view;
             b.Converter = new ViewModelToViewConverter();
             contentControl.SetBinding(ContentControl.ContentProperty, b);
-            
+
             Button closeTabButton = new Button();
-            closeTabButton.Width = 25;
-            closeTabButton.Height = 25;
+            closeTabButton.Width = 18;
+            closeTabButton.Height = 18;
             closeTabButton.HorizontalAlignment = HorizontalAlignment.Left;
             closeTabButton.Command = CloseTabCommand;
             Image closeImage = new Image();
@@ -42,20 +80,40 @@
             bi.EndInit();
             closeImage.Source = bi;
             closeTabButton.Content = closeImage;
+            closeTabButton.BorderThickness = new Thickness(0);
+            //Binding b2 = new Binding();
+            //b2.Source = tabItem.IsSelected;
+            ////b2.Converter = new BoolToVisibleOrHidden();
+            ////b2.FallbackValue = Visibility.Visible;
+            //closeTabButton.SetBinding(Button.IsEnabledProperty, b2);
+
+            Grid tabGrid = new Grid();
+            tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            Label label = new Label();
+            label.Content = _title;
+            label.HorizontalAlignment = HorizontalAlignment.Left;
+            label.VerticalAlignment = VerticalAlignment.Center;
+            tabGrid.Children.Add(label);
+            Grid.SetColumn(label, 0);
+            tabGrid.Children.Add(closeTabButton);
+            Grid.SetColumn(closeTabButton, 1);
+            tabItem.Header = tabGrid;
+
 
             Grid grid = new Grid();
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            grid.Children.Add(closeTabButton);
+            //grid.Children.Add(closeTabButton);
             grid.Children.Add(contentControl);
-            Grid.SetColumn(closeTabButton, 0);
-            Grid.SetRow(closeTabButton, 0);
+            //Grid.SetColumn(closeTabButton, 0);
+            //Grid.SetRow(closeTabButton, 0);
             Grid.SetColumn(contentControl, 0);
             Grid.SetColumnSpan(contentControl, 2);
             Grid.SetRow(contentControl, 1);
-            
+
 
             //tabItem.Content = contentControl;
             tabItem.Content = grid;
@@ -64,6 +122,39 @@
             SelectedTabItem = tabItem;
             return tabItem;
         }
+
+        private void TabItemCreator (string _tabName)
+        {
+            IViewModel window;
+            int pos = tabList.IndexOf(_tabName);
+            if (pos < 0)
+            {
+                tabList.Add(_tabName);
+                switch (_tabName)
+                {
+                    case registrationJournal:
+                        window = new RegistrationJournalViewModel();
+                        break;
+                    case engineersEditor:
+                        window = new EngineersEditorViewModel();
+                        break;
+                    case customersEditor:
+                        window = new CustomersEditorViewModel();
+                        break;
+                    default:
+                        window = null;
+                        break;
+                }
+                TabItems.Add(CreateTabItem(_tabName, window));
+            }
+            else
+            {
+                SelectedTabItem = TabItems.ElementAt(pos);
+            }
+        }
+
+        #endregion
+
 
         public MainWindowViewModel()
         {
@@ -114,17 +205,23 @@
 
         private void OnRegistrationJournalCommandExecute()
         {
-            TabItem temp = TabItems.Where(x => (string)x.Header == "Журнал регистрации исследований").FirstOrDefault();
-            if (temp == null)
-            {
-                RegistrationJournalViewModel window = new RegistrationJournalViewModel();
-                TabItems.Add(CreateTabItem("Журнал регистрации исследований", window));
-            }
-            else
-            {
-                SelectedTabItem = temp;
-            }
+            //TabItem temp = TabItems.Where(x => (string)x.Header == "Журнал регистрации исследований").FirstOrDefault();
+            //if (temp == null)
+            //{
+            //    RegistrationJournalViewModel window = new RegistrationJournalViewModel();
+            //    TabItems.Add(CreateTabItem("Журнал регистрации исследований", window));
+            //}
+            //else
+            //{
+            //    SelectedTabItem = temp;
+            //}
+            TabItemCreator(registrationJournal);
+            //string sName = "Журнал регистрации исследований";
             
+            //int tabItemNumb = .Key;
+
+            //TabItem tabItem = 
+
             //windowsList.Add((RegistrationJournalViewModel)tempWindow);
             //var tabItem = new TabItem();
             //tabItem.Header = "Журнал регистрации исследований";
@@ -148,38 +245,65 @@
 
         private void OnEditEngineersCommandExecute()
         {
-            TabItem temp = TabItems.Where(x => (string)x.Header == "Список работников").FirstOrDefault();
-            if (temp == null)
-            {
-                EngineersEditorViewModel window = new EngineersEditorViewModel();
-                TabItems.Add(CreateTabItem("Список работников", window));
-            }
-            else
-            {
-                SelectedTabItem = temp;
-            }
+            //TabItem temp = TabItems.Where(x => (string)x.Header == "Список работников").FirstOrDefault();
+            //if (temp == null)
+            //{
+            //    EngineersEditorViewModel window = new EngineersEditorViewModel();
+            //    TabItems.Add(CreateTabItem("Список работников", window));
+            //}
+            //else
+            //{
+            //    SelectedTabItem = temp;
+            //}
+            TabItemCreator(engineersEditor);
+            //string sName = "Список работников";
+            //int pos = tabList.IndexOf(sName);
+            //if (pos < 0)
+            //{
+            //    tabList.Add(sName);
+            //    EngineersEditorViewModel window = new EngineersEditorViewModel();
+            //    TabItems.Add(CreateTabItem(sName, window));
+            //}
+            //else
+            //{
+            //    SelectedTabItem = TabItems.ElementAt(pos);
+            //}
         }
 
         public Command EditCustomersCommand { get; private set; }
 
         private void OnEditCustomersCommandExecute()
         {
-            TabItem temp = TabItems.Where(x => (string)x.Header == "Заказчики").FirstOrDefault();
-            if (temp == null)
-            {
-                CustomersEditorViewModel window = new CustomersEditorViewModel();
-                TabItems.Add(CreateTabItem("Заказчики", window));
-            }
-            else
-            {
-                SelectedTabItem = temp;
-            }
+            //TabItem temp = TabItems.Where(x => (string)x.Header == "Заказчики").FirstOrDefault();
+            //if (temp == null)
+            //{
+            //    CustomersEditorViewModel window = new CustomersEditorViewModel();
+            //    TabItems.Add(CreateTabItem("Заказчики", window));
+            //}
+            //else
+            //{
+            //    SelectedTabItem = temp;
+            //}
+            TabItemCreator(customersEditor);
+            //string sName = "Заказчики";
+            //int pos = tabList.IndexOf(sName);
+            //if (pos < 0)
+            //{
+            //    tabList.Add(sName);
+            //    CustomersEditorViewModel window = new CustomersEditorViewModel();
+            //    TabItems.Add(CreateTabItem(sName, window));
+            //}
+            //else
+            //{
+            //    SelectedTabItem = TabItems.ElementAt(pos);
+            //}
         }
 
         public Command CloseTabCommand { get; private set; }
 
         private void OnCloseTabCommandExecute()
         {
+            tabList.Remove(tabList.ElementAt(TabItems.IndexOf(SelectedTabItem)));
             TabItems.Remove(SelectedTabItem);
         }
 
