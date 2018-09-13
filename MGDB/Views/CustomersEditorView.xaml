@@ -40,7 +40,9 @@
             Grid.Row="0"
             Grid.Column="2"
             Text="{Binding CurrentCustomerName}"
-            MinWidth="150">
+            MinWidth="150" 
+            VerticalContentAlignment="Center" 
+            Height="20">
         </TextBox>
         <Label
             Margin="5"
@@ -65,7 +67,8 @@
             Grid.Row="3"
             Grid.Column="2"
             Text="{Binding NewMVZText}"
-            MinWidth="100">
+            MinWidth="100" 
+            Height="20">
         </TextBox>
         <StackPanel
             Grid.Row="1"
@@ -77,6 +80,14 @@
             <Button Margin="5" Content="Исправить МВЗ" Command="{Binding EditMVZCommand}" />
         </StackPanel>
         <Button Grid.Row="4" Grid.Column="2" Margin="5" MinWidth="100" Content="Добавить / Изменить" Command="{Binding AddEditCustomerCommand}" />
+        <Button 
+            Content="Очистить" 
+            Grid.Column="3" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center" 
+            Margin="5" 
+            MinWidth="100"
+            Command="{Binding ClearCommand}" />
     </Grid>
-    
+
 </catel:UserControl>

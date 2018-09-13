@@ -98,6 +98,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters.cs" />
     <Compile Include="ViewModels\ChemistryViewModel.cs" />
     <Compile Include="ViewModels\SampleMakingViewModel.cs" />
     <Compile Include="ViewModels\SamplePrepViewModel.cs" />

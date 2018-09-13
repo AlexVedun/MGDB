@@ -27,6 +27,7 @@ namespace MGDB.ViewModels
             AddMVZCommand = new Command(OnAddMVZCommandExecute);
             EditMVZCommand = new Command(OnEditMVZCommandExecute);
             AddEditCustomerCommand = new Command(OnAddEditCustomerCommandExecute);
+            ClearCommand = new Command(OnClearCommandExecute);
         }
 
         ~CustomersEditorViewModel()
@@ -147,6 +148,13 @@ namespace MGDB.ViewModels
             db.SaveChanges();
         }
 
+        public Command ClearCommand { get; private set; }
+
+        private void OnClearCommandExecute()
+        {
+            CurrentCustomerName = "";
+            MVZList.Clear();
+        }
         #endregion    
 
         #region Other

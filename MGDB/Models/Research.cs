@@ -2,16 +2,70 @@ namespace MGDB.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Runtime.CompilerServices;
 
-    public partial class Research
+    public partial class Research: INotifyPropertyChanged
     {
+        private short numberOfSamples;
+        private string number;
+        private DateTime date;
+        private string description;
+        private MVZ mvz;
+        private Customer customer;
+        private TypeOfResearch typeOfResearch;
+
         public int Id { get; set; }
         [MaxLength(8)]
-        public string Number { get; set; }
-        public System.DateTime Date { get; set; }
-        public string Description { get; set; }
-        public short NumberOfSamples { get; set; }
+        public string Number
+        {
+            get
+            {
+                return number;
+            }
+            set
+            {
+                number = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public System.DateTime Date
+        {
+            get
+            {
+                return date;
+            }
+            set
+            {
+                date = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public string Description
+        {
+            get
+            {
+                return description;
+            }
+            set
+            {
+                description = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public short NumberOfSamples
+        {
+            get
+            {
+                return numberOfSamples;
+            }
+            set
+            {
+                numberOfSamples = value;
+                NotifyPropertyChanged();
+            }
+        }
         [MaxLength(512)]
         public string Notation { get; set; }
         public StatusEnum Status { get; set; }
@@ -32,9 +86,51 @@ namespace MGDB.Models
         public int TypeOfResearchId { get; set; }
     
         public virtual Engineer Engineer { get; set; }
-        public virtual MVZ MVZ { get; set; }
-        public virtual Customer Customer { get; set; }
-        public virtual TypeOfResearch Type { get; set; }
+        public virtual MVZ MVZ
+        {
+            get
+            {
+                return mvz;
+            }
+            set
+            {
+                mvz = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public virtual Customer Customer
+        {
+            get
+            {
+                return customer;
+            }
+            set
+            {
+                customer = value;
+                NotifyPropertyChanged();
+            }
+        }
+        public virtual TypeOfResearch Type
+        {
+            get
+            {
+                return typeOfResearch;
+            }
+            set
+            {
+                typeOfResearch = value;
+                NotifyPropertyChanged();
+            }
+        }
         public virtual ResearchData ResearchData { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void NotifyPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }
