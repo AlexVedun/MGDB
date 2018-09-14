@@ -5,8 +5,10 @@
                    xmlns:mgdb="clr-namespace:MGDB"
                    Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
                    VerticalAlignment="Stretch"
-                   Width="1000"
-                   Height="600">
+                   HorizontalAlignment="Stretch"
+                   MinWidth="1000"
+                   MinHeight="600"
+                   >
 
     <catel:UserControl.Resources>
         <Image x:Key="CloseTabIcon" Source="../Icons/CloseTabIcon.png" />
@@ -27,9 +29,9 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="70*"/>
-            <ColumnDefinition Width="180*"/>
-            <ColumnDefinition Width="250*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <ListView Grid.ColumnSpan="3" ItemsSource="{Binding JournalData}" SelectedItem="{Binding CurrentResearch}" SelectedIndex="{Binding CurrentResearchIndex}" Grid.Row="0" Grid.Column="0">
             <ListView.View>
@@ -44,22 +46,21 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Номер" Margin="0" Grid.Row="2"/>
+        <Label Content="Номер" Margin="5" Grid.Row="2"/>
         <TextBox Grid.Column="1" 
                  Margin="5,5,0,5" 
                  Grid.Row="2" 
                  TextWrapping="Wrap" 
                  Text="{Binding CurrentNumber}" 
                  HorizontalAlignment="Left" 
-                 Width="100" 
-                 Height="20"/>
-        <Label Content="Дата" Margin="0" Grid.Row="3"/>
-        <Label Content="Заказчик" Margin="0" Grid.Row="4"/>
-        <Label Content="МВЗ" Margin="0" Grid.Row="5"/>
-        <Label Content="Вид исследования" Margin="0" Grid.Row="6"/>
-        <Label Content="Описание" Margin="0" Grid.Row="7" VerticalContentAlignment="Center"/>
-        <Label Content="Количество образцов" Grid.Row="8"/>
-        <DatePicker Grid.Column="1" Margin="5,5,0,5" Grid.Row="3" HorizontalAlignment="Left" Width="150" SelectedDate="{Binding CurrentDate}"/>
+                 Width="100" TabIndex="0"/>
+        <Label Content="Дата" Margin="5" Grid.Row="3"/>
+        <Label Content="Заказчик" Margin="5" Grid.Row="4"/>
+        <Label Content="МВЗ" Margin="5" Grid.Row="5"/>
+        <Label Content="Вид исследования" Margin="5" Grid.Row="6"/>
+        <Label Content="Описание" Margin="5" Grid.Row="7" VerticalContentAlignment="Center"/>
+        <Label Content="Количество образцов" Grid.Row="8" Margin="5"/>
+        <DatePicker Grid.Column="1" Margin="5,5,0,5" Grid.Row="3" HorizontalAlignment="Left" Width="150" SelectedDate="{Binding CurrentDate}" TabIndex="1"/>
         <ComboBox Grid.Column="1" 
                   Margin="5,5,0,5" 
                   Grid.Row="4" 
@@ -68,7 +69,7 @@
                   ItemsSource="{Binding CustomersList}"
                   DisplayMemberPath="Name"
                   SelectedItem="{Binding CurrentCustomer}"
-                  SelectedIndex="{Binding CurrentCustomerIndex}"/>
+                  SelectedIndex="{Binding CurrentCustomerIndex}" TabIndex="2"/>
         <ComboBox Grid.Column="1" 
                   Margin="5,5,0,5" 
                   Grid.Row="5" 
@@ -77,7 +78,7 @@
                   ItemsSource="{Binding MVZList}"
                   DisplayMemberPath="Text"
                   SelectedItem="{Binding CurrentMVZ}"
-                  SelectedIndex="{Binding CurrentMVZIndex}"/>
+                  SelectedIndex="{Binding CurrentMVZIndex}" TabIndex="3"/>
         <ComboBox Grid.Column="1" 
                   Margin="5,5,0,5" 
                   Grid.Row="6" 
@@ -86,33 +87,32 @@
                   ItemsSource="{Binding ResearchType}"
                   DisplayMemberPath="Type"
                   SelectedItem="{Binding CurrentResearchType}"
-                  SelectedIndex="{Binding CurrentResearchTypeIndex}"/>
+                  SelectedIndex="{Binding CurrentResearchTypeIndex}" TabIndex="4"/>
         <TextBox Grid.Column="1" 
                  Margin="5,5,0,5" 
                  Grid.Row="8" 
                  TextWrapping="Wrap" 
                  HorizontalAlignment="Left" 
-                 Width="100" 
-                 Height="20"
-                 Text="{Binding CurrentNumberOfSamples, Converter={StaticResource ShortToStringConverter}}"/>
-        <StackPanel Grid.ColumnSpan="2" Margin="0" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
+                 Width="100"
+                 Text="{Binding CurrentNumberOfSamples, Converter={StaticResource ShortToStringConverter}}" TabIndex="6"/>
+        <StackPanel Margin="8" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="310" Grid.ColumnSpan="2">
             <Button Content="Новая запись" 
                     Padding="5" 
                     Margin="0,0,15,0" 
                     Width="140"
-                    Command="{Binding NewRecordCommand}"/>
+                    Command="{Binding NewRecordCommand}" TabIndex="7"/>
             <Button Content="Сохранить изменения" 
                     HorizontalContentAlignment="Center" 
                     Padding="5" 
                     Margin="15,0,0,0" 
                     Width="140"
-                    Command="{Binding SaveRecordCommand}"/>
+                    Command="{Binding SaveRecordCommand}" TabIndex="8"/>
         </StackPanel>
         <TextBox Grid.Column="1" 
                  Margin="5" 
                  Grid.Row="7" 
                  TextWrapping="Wrap"
-                 Text="{Binding CurrentDescription}"/>
+                 Text="{Binding CurrentDescription}" TabIndex="5" Width="350"/>
     </Grid>
     <!--<Grid>
         <Grid.RowDefinitions>
