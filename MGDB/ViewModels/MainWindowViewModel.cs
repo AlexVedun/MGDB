@@ -49,6 +49,7 @@
         private const string registrationJournal = "Журнал регистрации исследований";
         private const string engineersEditor = "Список работников";
         private const string customersEditor = "Заказчики";
+        private const string samplePrepJournal = "Журнал регистрации заказов на порезку проб";
 
         private List<IViewModel> windowsList = new List<IViewModel>();
         private List<string> tabList = new List<string>();
@@ -144,6 +145,9 @@
                     case customersEditor:
                         window = new CustomersEditorViewModel();
                         break;
+                    case samplePrepJournal:
+                        window = new SamplePrepViewModel();
+                        break;
                     default:
                         window = null;
                         break;
@@ -168,8 +172,10 @@
             EditEngineersCommand = new Command(OnEditEngineersCommandExecute);
             EditCustomersCommand = new Command(OnEditCustomersCommandExecute);
             TabItems = new ObservableCollection<TabItem>();
+            SamplePrepJournalCommand = new Command(OnSamplePrepJournalCommandExecute);
         }
 
+        #region Properties
         public ObservableCollection<TabItem> TabItems
         {
             get { return GetValue<ObservableCollection<TabItem>>(TabItemsProperty); }
@@ -193,7 +199,9 @@
         }
 
         public static readonly PropertyData SelectedTabItemProperty = RegisterProperty(nameof(SelectedTabItem), typeof(TabItem), null);
+        #endregion
 
+        #region Commands
         public Command Test1 { get; private set; }
 
         private void OnTest1Execute()
@@ -220,7 +228,7 @@
             //}
             TabItemCreator(registrationJournal);
             //string sName = "Журнал регистрации исследований";
-            
+
             //int tabItemNumb = .Key;
 
             //TabItem tabItem = 
@@ -302,6 +310,12 @@
             //}
         }
 
+        public Command SamplePrepJournalCommand { get; private set; }
+
+        private void OnSamplePrepJournalCommandExecute()
+        {
+            TabItemCreator(samplePrepJournal);
+        }
         public Command CloseTabCommand { get; private set; }
 
         private void OnCloseTabCommandExecute()
@@ -316,7 +330,11 @@
         {
             App.Current.Shutdown();
         }
+        #endregion
 
+
+
+        #region Other
         public override string Title { get { return "MGDB"; } }
 
         protected override async Task InitializeAsync()
@@ -332,5 +350,7 @@
 
             await base.CloseAsync();
         }
+        #endregion
+
     }
 }

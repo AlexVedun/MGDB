@@ -1,4 +1,4 @@
-﻿<catel:UserControl x:Class="MGDB.Views.SamplePrepView"
+﻿<catel:UserControl x:Class="MGDB.SamplePrepView"
                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:catel="http://schemas.catelproject.com" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" MinWidth="1000" MinHeight="500">
@@ -21,28 +21,33 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView Grid.ColumnSpan="3" Margin="5">
+        <ListView Grid.ColumnSpan="3" Margin="5" ItemsSource="{Binding JournalData}" SelectedItem="{Binding CurrentRecord}" SelectedIndex="{Binding CurrentRecordIndex}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Header="Номер" Width="50" DisplayMemberBinding="{Binding Number}" />
+                    <GridViewColumn Header="Дата" Width="100" DisplayMemberBinding="{Binding Date}"/>
+                    <GridViewColumn Header="Заказчик" Width="100" DisplayMemberBinding="{Binding Customer.Name}"/>
+                    <GridViewColumn Header="МВЗ" Width="100" DisplayMemberBinding="{Binding MVZ.Text}"/>
+                    <GridViewColumn Header="Задание" Width="400" DisplayMemberBinding="{Binding Task}"/>
+                    <GridViewColumn Header="Номер исследования" Width="130" DisplayMemberBinding="{Binding ResearchNumber}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Label Content="Номер" Margin="5" Grid.Row="2"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" VerticalContentAlignment="Center"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="5" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center" Width="100" VerticalContentAlignment="Center" Text="{Binding CurrentNumber}"/>
         <Label Content="Дата" Margin="5" Grid.Row="3"/>
-        <DatePicker Grid.Column="1" Margin="5" Grid.Row="3" VerticalContentAlignment="Center" Width="150" HorizontalAlignment="Left"/>
+        <DatePicker Grid.Column="1" Margin="5" Grid.Row="3" VerticalContentAlignment="Center" Width="150" HorizontalAlignment="Left" DisplayDate="{Binding CurrentDate}"/>
         <Label Content="Заказчик" Margin="5" Grid.Row="4"/>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="4" VerticalAlignment="Center" Width="200"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="4" VerticalAlignment="Center" Width="200" ItemsSource="{Binding CustomersList}" DisplayMemberPath="Name" SelectedItem="{Binding CurrentCustomer}" SelectedIndex="{Binding CurrentCustomerIndex}"/>
         <Label Content="МВЗ" Margin="5" Grid.Row="5"/>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="5" VerticalAlignment="Center" Width="150"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="5" VerticalAlignment="Center" Width="150" ItemsSource="{Binding MVZList}" SelectedItem="{Binding CurrentMVZ}" SelectedIndex="{Binding CurrentMVZIndex}" DisplayMemberPath="Text"/>
         <Label Content="Задание" Margin="5" Grid.Row="6"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="5" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Center" Width="350"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="5" Grid.Row="6" TextWrapping="Wrap" VerticalAlignment="Center" Width="350" Text="{Binding CurrentTask}"/>
         <Label Content="Номер исследования" Margin="5" Grid.Row="7"/>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="7" VerticalAlignment="Center" Width="100"/>
+        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="5" Grid.Row="7" VerticalAlignment="Center" Width="100" ItemsSource="{Binding ResearchNumbers}" SelectedItem="{Binding SelectedResearchNumber}" SelectedIndex="{Binding ResearchNumberIndex}"/>
         <StackPanel Grid.ColumnSpan="2" Margin="5" Grid.Row="8" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30">
-            <Button Content="Новая запись" Width="140" Margin="0,0,15,0"/>
-            <Button Content="Сохранить изменения" Width="140" HorizontalAlignment="Right" Margin="15,0,0,0"/>
+            <Button Content="Новая запись" Width="140" Margin="0,0,15,0" Command="{Binding NewRecordCommand}"/>
+            <Button Content="Сохранить изменения" Width="140" HorizontalAlignment="Right" Margin="15,0,0,0" Command="{Binding SaveRecordCommand}"/>
         </StackPanel>
     </Grid>
 </catel:UserControl>

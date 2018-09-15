@@ -23,6 +23,7 @@ namespace MGDB
             db.MVZSet.Load();
             JournalData = db.SamplePrepRecordSet.Local;
             CustomersList = db.CustomerSet.ToList();
+            ResearchNumbers = db.ResearchSet.Where(x => x.Status == StatusEnum.IsInWork).Select(x => x.Number).ToList();
 
             NewRecordCommand = new Command(OnNewRecordCommandExecute);
             SaveRecordCommand = new Command(OnSaveRecordCommandExecute);
@@ -122,7 +123,16 @@ namespace MGDB
         public SamplePrepRecord CurrentRecord
         {
             get { return GetValue<SamplePrepRecord>(CurrentRecordProperty); }
-            set { SetValue(CurrentRecordProperty, value); }
+            set
+            {
+                SetValue(CurrentRecordProperty, value);
+                CurrentNumber = value.Number;
+                CurrentDate = value.Date;
+                CurrentCustomer = value.Customer;
+                CurrentMVZIndex = MVZList.IndexOf(value.MVZ);
+                CurrentTask = value.Task;
+                SelectedResearchNumber = value.ResearchNumber;
+            }
         }
 
         public static readonly PropertyData CurrentRecordProperty = RegisterProperty(nameof(CurrentRecord), typeof(SamplePrepRecord), null);
@@ -134,6 +144,30 @@ namespace MGDB
         }
 
         public static readonly PropertyData CurrentRecordIndexProperty = RegisterProperty(nameof(CurrentRecordIndex), typeof(int), null);
+
+        public List<string> ResearchNumbers
+        {
+            get { return GetValue<List<string>>(ResearchNumbersProperty); }
+            set { SetValue(ResearchNumbersProperty, value); }
+        }
+
+        public static readonly PropertyData ResearchNumbersProperty = RegisterProperty(nameof(ResearchNumbers), typeof(List<string>), null);
+
+        public string SelectedResearchNumber
+        {
+            get { return GetValue<string>(SelectedResearchNumberProperty); }
+            set { SetValue(SelectedResearchNumberProperty, value); }
+        }
+
+        public static readonly PropertyData SelectedResearchNumberProperty = RegisterProperty(nameof(SelectedResearchNumber), typeof(string), null);
+
+        public int ResearchNumberIndex
+        {
+            get { return GetValue<int>(ResearchNumberIndexProperty); }
+            set { SetValue(ResearchNumberIndexProperty, value); }
+        }
+
+        public static readonly PropertyData ResearchNumberIndexProperty = RegisterProperty(nameof(ResearchNumberIndex), typeof(int), null);
         #endregion
 
         #region Methods
@@ -142,14 +176,40 @@ namespace MGDB
 
         private void OnNewRecordCommandExecute()
         {
-            // TODO: Handle command logic here
+            CurrentRecordIndex = -1;
+            CurrentNumber = "";
+            CurrentDate = DateTime.Now;
+            CurrentCustomerIndex = -1;
+            CurrentMVZIndex = -1;
+            CurrentTask = "";
+            ResearchNumberIndex = -1;
         }
 
         public Command SaveRecordCommand { get; private set; }
 
         private void OnSaveRecordCommandExecute()
         {
-            // TODO: Handle command logic here
+            SamplePrepRecord record = db.SamplePrepRecordSet.Where(x => x.Number == CurrentNumber).FirstOrDefault() ?? new SamplePrepRecord();
+            if (record.Number == null)
+            {
+                record.Number = CurrentNumber;
+                record.Date = CurrentDate;
+                record.Customer = CurrentCustomer;
+                record.MVZ = CurrentMVZ;
+                record.Task = CurrentTask;
+                record.ResearchNumber = SelectedResearchNumber;
+                db.SamplePrepRecordSet.Add(record);
+            }
+            else
+            {
+                record.Number = CurrentNumber;
+                record.Date = CurrentDate;
+                record.Customer = CurrentCustomer;
+                record.MVZ = CurrentMVZ;
+                record.Task = CurrentTask;
+                record.ResearchNumber = SelectedResearchNumber;
+            }
+            db.SaveChanges();
         }
         #endregion
 

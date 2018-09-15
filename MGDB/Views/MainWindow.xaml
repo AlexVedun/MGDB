@@ -22,7 +22,7 @@
             </MenuItem>
             <MenuItem Header="Журналы">
                 <MenuItem Header="Журнал регистрации исследований" Command="{Binding RegistrationJournalCommand}"></MenuItem>
-                <MenuItem Header="Журнал регистрации заказов на порезку проб" Command="{Binding Test1}"></MenuItem>
+                <MenuItem Header="Журнал регистрации заказов на порезку проб" Command="{Binding SamplePrepJournalCommand}"></MenuItem>
                 <MenuItem Header="Журнал регистрации заказов на проведение КХА" Command="{Binding Test1}"></MenuItem>
                 <MenuItem Header="Журнал регистрации заказов для участка макро- и микроконтроля" Command="{Binding Test1}"></MenuItem>
             </MenuItem>

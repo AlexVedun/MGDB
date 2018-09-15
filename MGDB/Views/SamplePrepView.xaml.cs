@@ -1,4 +1,4 @@
-﻿namespace MGDB.Views
+﻿namespace MGDB
 {
     public partial class SamplePrepView
     {
