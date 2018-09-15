@@ -13,36 +13,36 @@
     using System.Windows.Media.Imaging;
     using System.Linq;
 
-    class BoolToVisibleOrHidden : System.Windows.Data.IValueConverter
-    {
-        #region Constructors
-        /// <summary>
-        /// The default constructor
-        /// </summary>
-        public BoolToVisibleOrHidden() { }
-        #endregion
+    //class BoolToVisibleOrHidden : System.Windows.Data.IValueConverter
+    //{
+    //    #region Constructors
+    //    /// <summary>
+    //    /// The default constructor
+    //    /// </summary>
+    //    public BoolToVisibleOrHidden() { }
+    //    #endregion
 
-        #region IValueConverter Members
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            bool bValue = (bool)value;
-            if (bValue)
-                return Visibility.Visible;
-            else
-                return Visibility.Hidden;
-        }
+    //    #region IValueConverter Members
+    //    public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    //    {
+    //        bool bValue = (bool)value;
+    //        if (bValue)
+    //            return Visibility.Visible;
+    //        else
+    //            return Visibility.Hidden;
+    //    }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            Visibility visibility = (Visibility)value;
+    //    public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+    //    {
+    //        Visibility visibility = (Visibility)value;
 
-            if (visibility == Visibility.Visible)
-                return true;
-            else
-                return false;
-        }
-        #endregion
-    }
+    //        if (visibility == Visibility.Visible)
+    //            return true;
+    //        else
+    //            return false;
+    //    }
+    //    #endregion
+    //}
 
     public class MainWindowViewModel : ViewModelBase
     {
@@ -102,16 +102,19 @@
 
 
             Grid grid = new Grid();
+            grid.HorizontalAlignment = HorizontalAlignment.Stretch;
+            grid.VerticalAlignment = VerticalAlignment.Stretch;
+            grid.Margin = new Thickness(5);
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
-            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
+            //grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-            grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
+            //grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
             //grid.Children.Add(closeTabButton);
             grid.Children.Add(contentControl);
             //Grid.SetColumn(closeTabButton, 0);
             //Grid.SetRow(closeTabButton, 0);
             Grid.SetColumn(contentControl, 0);
-            Grid.SetColumnSpan(contentControl, 2);
+            //Grid.SetColumnSpan(contentControl, 2);
             Grid.SetRow(contentControl, 1);
 
 

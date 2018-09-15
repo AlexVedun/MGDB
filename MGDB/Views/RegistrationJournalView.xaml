@@ -7,7 +7,7 @@
                    VerticalAlignment="Stretch"
                    HorizontalAlignment="Stretch"
                    MinWidth="1000"
-                   MinHeight="600"
+                   MinHeight="500"
                    >
 
     <catel:UserControl.Resources>
@@ -36,7 +36,7 @@
         <ListView Grid.ColumnSpan="3" ItemsSource="{Binding JournalData}" SelectedItem="{Binding CurrentResearch}" SelectedIndex="{Binding CurrentResearchIndex}" Grid.Row="0" Grid.Column="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Номер" Width="50" DisplayMemberBinding="{Binding Number}"/>
+                    <GridViewColumn Header="Номер" Width="50" DisplayMemberBinding="{Binding Number}" />
                     <GridViewColumn Header="Дата" Width="100" DisplayMemberBinding="{Binding Date}"/>
                     <GridViewColumn Header="Заказчик" Width="100" DisplayMemberBinding="{Binding Customer.Name}"/>
                     <GridViewColumn Header="МВЗ" Width="100" DisplayMemberBinding="{Binding MVZ.Text}"/>
