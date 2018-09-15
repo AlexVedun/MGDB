@@ -99,6 +99,15 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters.cs" />
+    <Compile Include="Migrations\201808251556356_InitialCreate.cs" />
+    <Compile Include="Migrations\201808251556356_InitialCreate.Designer.cs">
+      <DependentUpon>201808251556356_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201809151144269_SamplePrep_ResearchNumber.cs" />
+    <Compile Include="Migrations\201809151144269_SamplePrep_ResearchNumber.Designer.cs">
+      <DependentUpon>201809151144269_SamplePrep_ResearchNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\ChemistryViewModel.cs" />
     <Compile Include="ViewModels\SampleMakingViewModel.cs" />
     <Compile Include="ViewModels\SamplePrepViewModel.cs" />
@@ -195,6 +204,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\201808251556356_InitialCreate.resx">
+      <DependentUpon>201808251556356_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809151144269_SamplePrep_ResearchNumber.resx">
+      <DependentUpon>201809151144269_SamplePrep_ResearchNumber.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

@@ -11,6 +11,8 @@ namespace MGDB.Models
         public string Number { get; set; }
         public System.DateTime Date { get; set; }
         public string Task { get; set; }
+        [MaxLength(8)]
+        public string ResearchNumber { get; set; }
         public int ListOfEngineersId { get; set; }
         public int CustomersListId { get; set; }
         public int MVZListId { get; set; }
