@@ -53,7 +53,7 @@
                  TextWrapping="Wrap" 
                  Text="{Binding CurrentNumber}" 
                  HorizontalAlignment="Left" 
-                 Width="100" TabIndex="0"/>
+                 Width="100" TabIndex="0" VerticalContentAlignment="Center"/>
         <Label Content="Дата" Margin="5" Grid.Row="3"/>
         <Label Content="Заказчик" Margin="5" Grid.Row="4"/>
         <Label Content="МВЗ" Margin="5" Grid.Row="5"/>
@@ -94,7 +94,7 @@
                  TextWrapping="Wrap" 
                  HorizontalAlignment="Left" 
                  Width="100"
-                 Text="{Binding CurrentNumberOfSamples, Converter={StaticResource ShortToStringConverter}}" TabIndex="6"/>
+                 Text="{Binding CurrentNumberOfSamples, Converter={StaticResource ShortToStringConverter}}" TabIndex="6" VerticalContentAlignment="Center"/>
         <StackPanel Margin="8" Grid.Row="9" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="310" Grid.ColumnSpan="2">
             <Button Content="Новая запись" 
                     Padding="5" 
